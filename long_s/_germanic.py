@@ -117,6 +117,9 @@ _REPLACEMENTS = {
     "townsend": "townsend",
     "abschor": "abſchor",
     "bisschen": "biſschen",
+    "verskunst": "verskunſt",
+    "ssplitt": "sſplitt",
+    "splitt": "ſplitt",
     "genauso": "genauſo",
     "derselb": "derſelb",
     "dieselb": "dieſelb",
@@ -151,9 +154,17 @@ _REPLACEMENTS = {
     "ssystem": "sſyſtem",
     "system": "ſyſtem",
     #"messer": "meſſer",
+
+
+    "majestäts": "majestäts",
+    "majestät": "majestät",
+
     "messu": "meſsu",
     "messins": "meſsinſ",
     "missach": "miſsach",
+
+    "prozessors": "prozeſſors",
+    "prozessor": "prozeſſor",
     "prozesses": "prozeſses",
     "prozesse": "prozeſſe",
     "prozess": "prozeſs",
@@ -182,6 +193,9 @@ _REPLACEMENTS = {
     "schloss": "ſchloſs",
     "schlusses": "ſchluſses",
     "schluss": "ſchluſs",
+    "sspiel": "sſpiel",
+    "spiel": "ſpiel",
+    "sstoff": "sſtoff",
     "stoff": "ſtoff",
 
     "sselbs": "sſelbſ",
@@ -255,6 +269,32 @@ _REPLACEMENTS = {
     "volks": "volks",
     "fensters": "fenſterſ",
     "fenster": "fenſter",
+    "stheor": "stheor",
+    "stheater": "stheater",
+    "spädagog": "spädagog",
+
+
+    # global suffixes
+    "wäsch": "wäſch",
+    "ässchens": "äſschenſ",
+    "össchens": "öſſchenſ",
+    "ässchen": "äſschen",
+    "össchen": "öſſchen",
+
+    "döschen": "döschen",
+    "höschen": "höschen",
+    "röschen": "röschen",
+    "äschens": "äschenſ",
+    "öschens": "öſchenſ",
+    "äschen": "äschen",
+    "öschen": "öſchen",
+
+    # -tätigkeit
+    "stätigkeiten": "stätigkeiten",
+    "stätigkeit": "stätigkeit",
+
+    # -thetik UNCERTAIN (s and t(h) sound are separated)
+    "sthetik": "sthetik",
 
     # sch- combos
     "sscha": "sſcha",
@@ -274,6 +314,7 @@ _REPLACEMENTS = {
     "schü": "ſchü",
     "schy": "ſchy",
 
+    "schron": "schron",
     "schb": "ſchb",
     "schc": "ſchc",
     "schd": "ſchd",
@@ -288,6 +329,7 @@ _REPLACEMENTS = {
     "schp": "ſchp",
     "schq": "ſchq",
     "schs": "ſchſ",
+    "schr": "ſchr",
     "scht": "ſcht",
     "schv": "ſchv",
     "schw": "ſchw",
@@ -295,10 +337,13 @@ _REPLACEMENTS = {
     "schz": "ſchz",
     "ssch": "sſch",
 
+    "üsschen": "üſschen",
+    "üschen": "üſchen",
     "ückss": "ücksſ",
     "ücks": "ücks",
 
-    # s proceeded by consonants.
+    # s preceeded by consonants.
+    "ngss": "ngsſ",
     "bss": "bsſ",
     "css": "cſſ",
     "dss": "dsſ",
@@ -316,11 +361,93 @@ _REPLACEMENTS = {
     "tss": "tsſ",
     "wss": "wsſ",
 
+    "ngs": "ngs",
     "cs": "cſ",
     "ks": "kſ",
     "ßs": "ßſ",
     "xs": "xſ",
     "zs": "zſ",
+
+    # sp followed by combos
+    "sspä": "sſpä",
+    "sspü": "sſpü",
+
+    "spä": "ſpä",
+    "spü": "ſpü", 
+    "spy": "spy",
+
+    "sspf": "ſspf",
+    "sspl": "ſspl",
+
+    "spb": "ſpb",
+    "spc": "ſpc",
+    "spd": "ſpd",
+    "spf": "spf",
+    "spl": "spl",
+    "sps": "spſ",
+
+    # sk followed by combos.
+    "ssklav": "sſklav",
+    "sskl": "ſskl", # UNCERTAIN
+    "sskn": "ſskn",
+
+    "sklav": "ſklav", # UNCERTAIN
+    "skb": "skb", # UNCERTAIN
+    "skf": "skf", # UNCERTAIN
+    "skj": "skj", # UNCERTAIN
+    "skl": "skl", # UNCERTAIN
+    "skm": "skm", # UNCERTAIN
+    "skn": "skn", # UNCERTAIN
+    "skp": "skp", # UNCERTAIN
+    "skq": "skq",
+    "sks": "skſ", # UNCERTAIN
+    "skt": "skt", # UNCERTAIN
+    "skv": "skv", # UNCERTAIN
+    "skw": "skw", # UNCERTAIN
+    "skz": "skz", # UNCERTAIN
+
+    # st followed by combos.
+    "sstäte": "ſstäte",
+    #"sstät": "sſtät",
+    "sstä": "sſtä",
+    "sstö": "sſtö",
+    "sstü": "sſtü",
+    "sstyl": "sſtyl",
+    "ssty": "ſsty",
+
+    "stäte": "stäte",
+    #"stät": "ſtät",
+    "stä": "ſtä",
+    "stö": "ſtö",
+    "stü": "ſtü",
+    "styl": "ſtyl",
+    "sty": "sty",
+
+    "sstg": "ſſtg",
+    "sstl": "ſſtl",
+    "sstm": "ſſtm",
+    "ssts": "ſſtſ",
+    "sstz": "ſſtz",
+
+    "stst": "ſtſt",
+    "stb": "ſtb",
+    "stc": "ſtc",
+    "std": "ſtd",
+    "stf": "ſtf",
+    "stg": "ſtg",
+    "stj": "ſtj",
+    "stk": "ſtk",
+    "stl": "ſtl",
+    "stm": "ſtm",
+    "stn": "ſtn",
+    "stp": "ſtp",
+    "stq": "ſtq",
+    "stv": "ſtv",
+    "stw": "ſtw",
+    "stz": "ſtz", # UNCERTAIN
+
+
+
 
     # occurrences, mostly with double letters of some kind.
     "ssassi": "ſsaſſi",
@@ -489,12 +616,6 @@ _REPLACEMENTS = {
     "sup": "ſup",
     "sut": "sut",
 
-    #"ssüb": "ſsüb",
-    #"ssüc": "sſüc",
-    #"ssüd": "sſüd",
-    #"ssül": "sſül",
-    #"ssün": "sſün",
-    #"ssüp": "sſüp",
     "ssü": "sſü",
     "süb": "süb",
     "süc": "ſüc",
@@ -681,7 +802,7 @@ _REPLACEMENTS = {
     "heims": "heimſ",
     "heits": "heits",
     "igste": "igſte",
-    "keits": "keitſ",
+    "keits": "keits",
     "kens": "kenſ",
     "kraties": "kratieſ",
     "kundes": "kundeſ",
@@ -727,11 +848,118 @@ _REPLACEMENTS = {
 }
 
 _START_REPLACEMENTS = {
+    # separatable prefixes.
+    "abges": "abgeſ",
+    "aufges": "aufgeſ",
+    "ausges": "ausgeſ",
+    "anges": "angeſ",
+    "beiges": "beigeſ",
+    "dabeiges": "dabeigeſ",
+    "dages": "dageſ",
+    "daranges": "darangeſ",
+    "daraufges": "daraufgeſ",
+    "dareinges": "dareingeſ",
+    "darunterges": "daruntergeſ",
+    "darüberges": "darübergeſ",
+    "dazuges": "dazugeſ",
+    "durchges": "durchgeſ",
+    "einges": "eingeſ",
+    "fernges": "ferngeſ",
+    "festges": "feſtgeſ",
+    "fortges": "fortgeſ",
+    "herabges": "herabgeſ",
+    "heranges": "herangeſ",
+    "heraufges": "heraufgeſ",
+    "herausges": "herausgeſ",
+    "herdurchges": "herdurchgeſ",
+    "hereinges": "hereingeſ",
+    "herges": "hergeſ",
+    "herumges": "herumgeſ",
+    "herunterges": "heruntergeſ",
+    "hinabges": "hinabgeſ",
+    "hinanges": "hinangeſ",
+    "hinaufges": "hinaufgeſ",
+    "hinausges": "hinausgeſ",
+    "hindurchges": "herdurchgeſ",
+    "hineinges": "hineingeſ",
+    "hinges": "hingeſ",
+    "hinterges": "hintergeſ",
+    "hinunterges": "hinuntergeſ",
+    "hinüberges": "hinübergeſ",
+    "hinwegges": "hinweggeſ",
+    "hinzuges": "hinzugeſ",
+    "mitges": "mitgeſ",
+    "nachges": "nachgeſ",
+    "rausges": "rausgeſ",
+    "reinges": "reingeſ",
+    "umges": "umgeſ",  
+    "unterges": "untergeſ",
+    "überges": "übergeſ",
+    "vorausges": "vorausgeſ",
+    "vorbeiges": "vorbeigeſ",
+    "vorges": "vorgeſ",
+    "vorherges": "vorhergeſ",
+    "wegges": "weggeſ",
+    "wiederges": "wiedergeſ",
+    "zuges": "zugeſ",
+    "zurückges": "zurückgeſ",    
+
+    "abs": "abſ",
+    "aufs": "aufſ",
     "aus": "aus",
+    "ans": "anſ",
+    "beis": "beiſ",
+    "dabeis": "dabeiſ",
+    "das": "daſ",
+    "darans": "daranſ",
+    "daraufs": "daraufſ",
+    "dareins": "dareinſ",
+    "darunters": "darunterſ",
+    "darübers": "darüberſ",
+    "dazus": "dazuſ",
+    "durchs": "durchſ",
+    "eins": "einſ",
+    "ferns": "fernſ",
+    "fests": "feſtſ",
+    "forts": "fortſ",
+    "herabs": "herabſ",
+    "herans": "heranſ",
+    "heraufs": "heraufſ",
     "heraus": "heraus",
+    "herdurchs": "herdurchſ",
+    "hereins": "hereinſ",
+    "hers": "herſ",
+    "herums": "herumſ",
+    "herunters": "herunterſ",
+    "hinabs": "hinabſ",
+    "hinans": "hinanſ",
+    "hinaufs": "hinaufſ",
     "hinaus": "hinaus",
-    "voraus": "voraus",
+    "hindurchs": "herdurchſ",
+    "hineins": "hineinſ",
+    "hins": "hinſ",
+    "hinters": "hinterſ",
+    "hinunters": "hinunterſ",
+    "hinübers": "hinüberſ",
+    "hinwegs": "hinwegſ",
+    "hinzus": "hinzuſ",
+    "mits": "mitſ",
+    "nachs": "nachſ",
     "raus": "raus",
+    "reins": "reinſ",
+    "ums": "umſ",  
+    "unters": "unterſ",
+    "übers": "überſ",
+    "voraus": "voraus",
+    "vorbeis": "vorbeiſ",
+    "vors": "vorſ",
+    "vorhers": "vorherſ",
+    "wegs": "wegſ",
+    "wieders": "wiederſ",
+    "zus": "zuſ",
+    "zurücks": "zurückſ",  
+
+    "dies": "dieſ",
     "schwangers": "schwangerſ",
     "aufnahmes": "aufnahmeſ",
     "begräbnis": "begräbnis",
@@ -999,7 +1227,7 @@ _START_REPLACEMENTS = {
     "kopfs": "kopfſ",
     "kraus": "kraus",
     "krebs": "krebs",
-    "kreis": "kreis",
+    # "kreis": "kreis",
     "kurs": "kurs",
     "käses": "käſeſ",
     "käse": "käſe",
@@ -1012,6 +1240,7 @@ _START_REPLACEMENTS = {
     "last": "laſt",
     "laufs": "laufſ",
     "lauts": "lautſ",
+    "lebens": "lebens",
     "leers": "leerſ",
     "lehns": "lehnſ",
     "lehrs": "lehrſ",
@@ -1019,6 +1248,7 @@ _START_REPLACEMENTS = {
     "lerns": "lernſ",
     "leses": "leſeſ",
     "lese": "leſe",
+    "liebes": "liebes",
     "lochs": "lochſ",
     "lohns": "lohnſ",
     "lufts": "luftſ",
@@ -1101,7 +1331,7 @@ _START_REPLACEMENTS = {
     "tiefs": "tiefſ",
     "tiers": "tierſ",
     "todes": "todes",
-    "trans": "tranſ",
+    "trans": "tranſ", # UNCERTAIN
     "trass": "traſſ",
     "turms": "turmſ",
     "turns": "turnſ",
@@ -1117,7 +1347,7 @@ _START_REPLACEMENTS = {
     "viers": "vierſ",
     "virus": "virus",
     "volls": "vollſ",
-    "wachs": "wachs",
+    # "wachs": "wachs",
     "wahls": "wahlſ",
     "wahns": "wahnſ",
     "wahrs": "wahrſ",
@@ -1378,7 +1608,19 @@ _START_REPLACEMENTS = {
     "trosts": "troſtſ",
     "trost": "troſt",
     "türs": "türſ",
-    "vers": "verſ",
+    "versendungs": "verſendungſ",
+    "versuchs": "verſuchſ",
+    "versuch": "verſuch",
+    "versa": "verſa",
+    "versä": "verſä",
+    "versc": "verſc",
+    "versk": "verſk",
+    "verso": "verſo",
+    "versö": "verſö",
+    "versp": "verſp",
+    "verst": "verſt",
+    "versu": "verſu",
+    "versü": "verſü",
     "vors": "vorſ",
     "waisens": "waiſenſ",
     "waisen": "waiſen",
@@ -1495,7 +1737,7 @@ _END_REPLACEMENTS = {
     "sche": "ſche",
     "sch": "ſch",
 
-    "sses": "ſses", # UNCERTAIN: adjective ending conficts
+    #"sses": "ſses", # UNCERTAIN: adjective ending conficts
 
     "ssterem": "ſſterem",
     "ssteren": "ſſteren",
@@ -1953,6 +2195,30 @@ _END_REPLACEMENTS = {
     "siers": "ſiers",
     "sier": "ſier",
 
+    # -tigt
+    "stigtem": "ſtigtem",
+    "stigten": "ſtigten",
+    "stigter": "ſtigter",
+    "stigtes": "ſtigtes",
+    "stigte": "ſtigte",
+    "stigt": "ſtigt",
+
+    # -tig
+    "stigem": "ſtigem",
+    "stigen": "ſtigen",
+    "stiger": "ſtiger",
+    "stiges": "ſtiges",
+    "stige": "ſtige",
+    "stig": "ſtig",
+
+    # -tigst
+    "stigstem": "ſtigſtem",
+    "stigsten": "ſtigſten",
+    "stigster": "ſtigſter",
+    "stigstes": "ſtigſtes",
+    "stigste": "ſtigſte",
+    "stigst": "ſtigſt",
+
     # -igt
     "ssigtem": "ſſigtem",
     "ssigten": "ſſigten",
@@ -2057,6 +2323,48 @@ _END_REPLACEMENTS = {
     "sisten": "ſiſten",
     "sists": "ſiſts",
     "sist": "ſiſt",
+
+    # -isch
+    "ssischerers": "ſſiſcherers",
+    "ssischeren": "ſſiſcheren",
+    "ssischerem": "ſſiſcherem",
+    "ssischerer": "ſſiſcherer",
+    "ssischeres": "ſſiſcheres",
+    "ssischere": "ſſiſchere",
+    "ssischers": "ſſiſchers",
+    "ssischem": "ſſiſchem",
+    "ssischen": "ſſiſchen",
+    "ssischer": "ſſiſcher",
+    "ssisches": "ſſiſches",
+    "ssische": "ſſiſche",
+    "ssisch": "ſſiſch",
+
+    "sischerers": "ſiſcherers",
+    "sischeren": "ſiſcheren",
+    "sischerem": "ſiſcherem",
+    "sischerer": "ſiſcherer",
+    "sischeres": "ſiſcheres",
+    "sischere": "ſiſchere",
+    "sischers": "ſiſchers",
+    "sischem": "ſiſchem",
+    "sischen": "ſiſchen",
+    "sischer": "ſiſcher",
+    "sisches": "ſiſches",
+    "sische": "ſiſche",
+    "sisch": "ſiſch",
+
+    "ischerers": "iſcherers",
+    "ischeren": "iſcheren",
+    "ischerem": "iſcherem",
+    "ischerer": "iſcherer",
+    "ischeres": "iſcheres",
+    "ischere": "iſchere",
+    "ischers": "iſchers",
+    "ischem": "iſchem",
+    "ischer": "iſcher",
+    "isches": "iſches",
+    "ische": "iſche",
+    "isch": "iſch",
 
     # -istisch
     "sistischerem": "ſiſtiſcherem",
@@ -2306,6 +2614,8 @@ _END_REPLACEMENTS = {
 
 _dict_processed = False
 
+_SHOW_DEBUG = False
+
 UNKNOWN_S = "╳"
 
 def _process_dict():
@@ -2326,16 +2636,20 @@ def _process_dict():
     }
 
 def german_conversion(text):
-    _process_dict()
     SHORT_S_ALWAYS_BEFORE_Z = False # False after 1901.
+    _process_dict()
     
-    clean_text = text.lower().replace("s", UNKNOWN_S)
+    clean_text = text.lower()
+    if "s" not in clean_text:
+        return clean_text
+
+    clean_text = clean_text.replace("s", UNKNOWN_S)
     
-    # applies simple start patterns.
+    # if "s" if the first letter of the word, it will be long.
     if clean_text[0] == UNKNOWN_S:
         clean_text = "ſ" + clean_text[1:]
 
-    # any unknown S that comes before many consonants will be a short S.
+    # any unknown S that comes before many consonants becomes a short S.
     if SHORT_S_ALWAYS_BEFORE_Z:
         pattern = f"{UNKNOWN_S}(?=[aäceioöp{UNKNOWN_S}tuüyAÄCEIOÖPTUÜY])"
     else:
@@ -2349,40 +2663,63 @@ def german_conversion(text):
     for i in short_s_indices:
         clean_text = clean_text[:i] + "s" + clean_text[i + 1: ]
 
-
+    # primary replacements.
+    if _SHOW_DEBUG:
+        print("doing main replacements")
     for key, replacement in _REPLACEMENTS.items():
         if UNKNOWN_S not in clean_text:
             break
-        clean_text = smart_replace(clean_text, key, replacement)
+        clean_text, _ = smart_replace(clean_text, key, replacement)
+        clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
+        clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
 
-    # applies end spelling patterns.
+    # particular end replacements.
     if clean_text[-1] in [UNKNOWN_S, "ſ"]:
         clean_text = clean_text[:-1] + "s"
 
-    #if clean_text.endswith(f"{UNKNOWN_S}ch"):
-    #    clean_text = clean_text[:-3] + "ſch"
-    if clean_text[:-1].endswith(f"{UNKNOWN_S}ch"):
+    if text.endswith("sses"):
+        clean_text, _ = smart_replace( # differs for noun
+            clean_text,
+            "sses",
+            "ſses" if text[0].isupper() else "ſſes",
+            restrict_to_end=True,
+        )
+    elif clean_text[:-1].endswith(f"{UNKNOWN_S}ch"):
         clean_text = clean_text[:-4] + "ſch" + clean_text[-1]
     elif clean_text[:-1].endswith(f"{UNKNOWN_S}{UNKNOWN_S}"):
         clean_text = clean_text[:-3] + "ſſ" + clean_text[-1]
 
-    for key, replacement in _END_REPLACEMENTS.items():
-        clean_text = smart_replace(
-            clean_text, key, replacement, restrict_to_end=True
-        )
-    
     clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
     clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
 
+    # end replacements.
+    if _SHOW_DEBUG:
+        print("doing end replacements")
+    for key, replacement in _END_REPLACEMENTS.items():
+        clean_text, made_replacement = smart_replace(
+            clean_text, key, replacement, restrict_to_end=True
+        )
+        if made_replacement:
+            break
+    clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
+    clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
+
+    # start replacements.
+    if _SHOW_DEBUG:
+        print("doing start replacements")
     for key, replacement in _START_REPLACEMENTS.items():
-        clean_text = smart_replace(
+        if UNKNOWN_S not in clean_text:
+            break # i think this is okay
+        clean_text, made_replacement = smart_replace(
             clean_text, key, replacement, restrict_to_start=True
         )
-
+        if made_replacement:
+            break
     clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
     clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
 
     return clean_text
+
 
 def smart_replace(
     text,
@@ -2391,14 +2728,24 @@ def smart_replace(
     restrict_to_start=False,
     restrict_to_end=False,
 ):
+    made_replacement = False
+
+    if len(search_term) > len(text):
+        return text, made_replacement
+
+    # locates the position of every letter S in the <replacement> term.
+    search_chars = "sſ" # if not restrict_to_end else f"sſ{UNKNOWN_S}"
     s_indices = [
         i for i, char
         in enumerate(replacement)
-        if char in f"sſ"
+        if char in search_chars
     ]
-    if len(s_indices) == 0 or len(search_term) > len(text):
-        return text
+    n_unknowns = len(s_indices)
+    if n_unknowns == 0:
+        return text, made_replacement
 
+    """
+    # refines the range of modification as specified.
     old_snippet = ""
     if len(search_term) < len(text):
         if restrict_to_end:
@@ -2406,26 +2753,80 @@ def smart_replace(
             text = text[-len(search_term):]
         elif restrict_to_start:
             old_snippet = text[len(search_term):]
-            text = text[:len(search_term)]
-
-    n_unknowns = len(s_indices)
+            text = text[:len(search_term)]"""
+    
+    '''
+    NECESSARY? UNCERTAIN
     if n_unknowns <= 1:
+        show_debug = search_term in text
+        if _SHOW_DEBUG and show_debug:
+            print(f"{text} -> {search_term} -> ", end="")
         text = text.replace(search_term, replacement)
-        return old_snippet + text if restrict_to_end else text + old_snippet
+        if _SHOW_DEBUG and show_debug:
+            print(text)
+        return old_snippet + text if restrict_to_end else text + old_snippet'''
 
-    combinations = itertools.product([True, False], repeat=n_unknowns)
-    combinations = [c for c in combinations if any(c)]
+    # the replacement term is taken
+    # and every possible combination of
+    # switching out every possible letter S is generated.
+    # each combination will be a list of values
+    # that each correspond to the <s_indices>.
+    if not restrict_to_end:
+        combinations = itertools.product([True, False], repeat=n_unknowns)
+        combinations = [c for c in combinations if any(c)]
+    else:
+        combinations = itertools.product(f"sſ{UNKNOWN_S}", repeat=n_unknowns)
+
+    # a search term is generated to correspond to every resulting combination list.
     keys = []
     for combo in combinations:
-        #print(combo)
         new_string = list(replacement)
         for i, make_unknown in zip(s_indices, combo):
-            if make_unknown:
+            if restrict_to_end:
+                new_string[i] = make_unknown
+            elif make_unknown:
                 new_string[i] = UNKNOWN_S
         keys.append("".join(new_string))
-    
-    for key in keys:
+
+    # now each unique search term is used as the search term
+    # in <text> and replaced with the original <replacement> term.
+    '''for key in keys:
+        show_debug = key in text
+        if _SHOW_DEBUG and show_debug:
+            print(f"{text} -> {key} -> ", end="")
         text = text.replace(key, replacement)
+        if _SHOW_DEBUG and show_debug:
+            print(text)'''
 
-    return old_snippet + text if restrict_to_end else text + old_snippet
+    if not restrict_to_start and not restrict_to_end:
+        #old_text = text
+        for key in keys:
+            show_debug = _SHOW_DEBUG and key in text
+            if show_debug:
+                print(f"{text} -> {key} -> ", end="")
+            text = text.replace(key, replacement)
+            #if old_text != text:
+            #    made_replacement = True
+            #    break
+            
+    elif restrict_to_start:
+        for key in keys:
+            show_debug = _SHOW_DEBUG and key in text
+            if show_debug:
+                print(f"{text} -> {key} -> ", end="")
+            if text.startswith(key):
+                text = replacement + text[len(key):]
+                made_replacement = True
+                break
+    else:
+        for key in keys:
+            show_debug = _SHOW_DEBUG and key in text
+            if show_debug:
+                print(f"{text} -> {key} -> ", end="")
+            if text.endswith(key):
+                text = text[:-len(key)] + replacement
+                made_replacement = True
+                break
 
+    #return old_snippet + text if restrict_to_end else text + old_snippet
+    return text, made_replacement
