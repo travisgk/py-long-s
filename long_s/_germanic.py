@@ -93,6 +93,10 @@ _REPLACEMENTS = {
     "sessig": "seſſig",
     "syoga": "syoga",
     "lissabon": "liſſabon",
+    "stransports": "stransports",
+    "stransport": "stransport",
+    "transports": "transports",
+    "transport": "transport",
     "melissa": "meliſſa",
     "nissan": "niſſan",
     "orissa": "oriſſa",
@@ -129,6 +133,23 @@ _REPLACEMENTS = {
     "denselb": "denſelb",
     "demselb": "demſelb",
 
+    # dis
+    "disharmonie": "disharmonie",
+    "diskant": "diskant",
+    "diskret": "diskret",
+    "diskussion": "diskussion",
+    "diskutier": "diskutier",
+    "dispens": "dispenſ",
+    "dissident": "diſſident",
+    "dissonanz": "diſſonanz",
+    "distanz": "diſtanz",
+    "distichon": "diſtichon",
+    "distinktion": "diſtinktion",
+    "distinguier": "diſtinguier",
+    "distrikt": "diſtrikt",
+    "disziplin": "disziplin",
+
+
     "sassoz": "saſſoz",
     "assoz": "aſſoz",
     "sideal": "sideal",
@@ -157,8 +178,38 @@ _REPLACEMENTS = {
     "ssystems": "sſyſtemſ",
     "ssystem": "sſyſtem",
     "system": "ſyſtem",
+    "atmosphäre": "atmoſphäre",
+    
     #"messer": "meſſer",
+    "charakterslot": "charakterſlot",
+    "kartenslot": "kartenſlot",
+    "kreuzslot": "kreuzſlot",
 
+    # sk
+    "sskizz": "sſkizz",
+    "freizeitskipper": "freizeitſkipper",
+    "skateboard": "ſkateboard",
+    "sketch": "ſketch",
+    "skyp": "ſkyp",
+    "skizz": "ſkizz",
+    "skalpell": "ſkalpell",
+    "skeptik": "ſkeptik",
+    "sskelett": "sſkelett",
+    "skelett": "ſkelett",
+    "skulptur": "ſkulptur",
+    "sskandal": "sſkandal",
+    "skandal": "ſkandal",
+
+    # sc
+    "script": "ſcript",
+    "score": "ſcore",
+    "scout": "ſcout",
+    "scanner": "ſcanner",
+    "scotch": "ſcotch",
+    "screenshot": "ſcreenſhot",
+    "screen": "ſcreen",
+    "scandal": "ſcandal",
+    
 
     "majestäts": "majestäts",
     "majestät": "majestät",
@@ -174,6 +225,7 @@ _REPLACEMENTS = {
     "prozess": "prozeſs",
     "sache": "ſache",
     "ssöl": "ſsöl",
+    "kreischef": "kreischef",
 
     "sschossest": "sſchoſſeſt",
     "sschosses": "sſchoſses",
@@ -201,6 +253,7 @@ _REPLACEMENTS = {
     "spiel": "ſpiel",
     "sstoff": "sſtoff",
     "stoff": "ſtoff",
+    "schemie": "schemie",
 
     "sselbs": "sſelbſ",
     "selbs": "ſelbſ",
@@ -278,6 +331,8 @@ _REPLACEMENTS = {
     "stheater": "stheater",
     "spädagog": "spädagog",
 
+    "hübsch": "hübſch",
+
 
     # global suffixes
     "wäsch": "wäſch",
@@ -302,6 +357,8 @@ _REPLACEMENTS = {
     "sthetik": "sthetik",
 
     # sch- combos
+    
+
     "sscha": "sſcha",
     "sschä": "sſchä",
     "sschi": "sſchi",
@@ -309,6 +366,11 @@ _REPLACEMENTS = {
     "sschö": "sſchö",
     "sschu": "sſchu",
     "sschü": "sſchü",
+
+    "asch": "aſch",
+    "ischens": "iſchenſ",
+    "ische": "iſche",
+
 
     #"sscha": "sſcha",
     "schä": "ſchä",
@@ -750,6 +812,7 @@ _REPLACEMENTS = {
     "ossar": "oſsar",
     "ossest": "oſſeſ",
     "osses": "oſseſ",
+    "opse": "oſpe",
     "osse": "oſſe",
     "ossi": "oſſi",
     "ossoc": "osſoc",
@@ -865,7 +928,7 @@ _START_REPLACEMENTS = {
         "abwassers": "abwaſſerſ",
         "aufnahmes": "aufnahmeſ",
         "abwasser": "abwaſſer",
-        "akustiks": "akustikſ",
+        "akustiks": "akuſtikſ",
         "almosens": "almoſenſ",
         "ameisens": "ameiſenſ",
         "ankunfts": "ankunfts",
@@ -876,7 +939,7 @@ _START_REPLACEMENTS = {
         "abwesen": "abweſen",
         "abwärts": "abwärts",
         "achsels": "achſels",
-        "akustik": "akustik",
+        "akustik": "akuſtik",
         "alltags": "alltags",
         "almosen": "almoſen",
         "ameisen": "ameiſen",
@@ -1007,7 +1070,6 @@ _START_REPLACEMENTS = {
     "d": {
         "darunterges": "daruntergeſ",
         "darüberges": "darübergeſ",
-        "dazwischen": "dazwiſchen",
         "daraufges": "daraufgeſ",
         "dareinges": "dareingeſ",
         "darunters": "darunterſ",
@@ -1057,8 +1119,8 @@ _START_REPLACEMENTS = {
         "dors": "dorſ",
         "drüs": "drüſ",
         "das": "das",
-        "des": "deſ",
-        "dis": "dis",
+        #"des": "deſ", UNCERTAIN
+        #"dis": "dis",
     },
     "e": {
         "ermessens": "ermeſſens",
@@ -1096,8 +1158,8 @@ _START_REPLACEMENTS = {
         "ess": "eſs",
     },
     "f": {
-        "flaschens": "flaſchenſ",
-        "flaschen": "flaſchen",
+        #"flaschens": "flaſchenſ",
+        #"flaschen": "flaſchen",
         "fliesens": "flieſenſ",
         "fernges": "ferngeſ",
         "fernseh": "fernſeh",
@@ -1582,6 +1644,7 @@ _START_REPLACEMENTS = {
         "sechs": "ſechs",
         "seils": "ſeilſ",
         "sinus": "ſinus",
+        "smogs": "ſmogſ",
         "spars": "sparſ",
         "späts": "ſpätſ",
         "stabs": "ſtabs",
@@ -1593,6 +1656,7 @@ _START_REPLACEMENTS = {
         "sens": "ſenſ",
         "sess": "seſſ",
         "skis": "ſkiſ",
+        "smog": "ſmog",
         "subs": "ſubſ",
         "süds": "ſüdſ",
     },
@@ -1607,7 +1671,7 @@ _START_REPLACEMENTS = {
         "tiefs": "tiefſ",
         "tiers": "tierſ",
         "todes": "todes",
-        "trans": "tranſ",
+        #"trans": "tranſ",
         "trass": "traſſ",
         "trost": "troſt",
         "turms": "turmſ",
@@ -1728,11 +1792,9 @@ _START_REPLACEMENTS = {
     "z": {
         "zulassung": "zulaſſung",
         "zurückges": "zurückgeſ",
-        "zwischens": "zwiſchenſ",
         "zahlungs": "zahlungs",
         "zukunfts": "zukunfts",
         "zulassen": "zulaſſen",
-        "zwischen": "zwiſchen",
         "zensurs": "zenſurſ",
         "zeugnis": "zeugnis",
         "zufalls": "zufalls",
@@ -1871,6 +1933,7 @@ _END_REPLACEMENTS = [
             "stenem": "ſtenem",
         },
         "nen": {
+            "sterinnen": "ſterinnen",
             "ssteinen": "sſteinen",
             "sstenen": "ſſtenen",
             "steinen": "ſteinen",
@@ -2162,7 +2225,7 @@ _END_REPLACEMENTS = [
             "soiden": "ſoiden",
             "ssiven": "ſſiven",
             "stemen": "ſtemen",
-            "stiken": "stiken",
+            "stiken": "ſtiken",
             "salen": "ſalen",
             "samen": "ſamen",
             "siven": "ſiven",
@@ -2371,6 +2434,7 @@ _END_REPLACEMENTS = [
             "ssing": "ſſing",
             "ssung": "ſſung",
             "sing": "ſing",
+            "smog": "ſmog",
             "ssig": "ſſig",
             "stig": "ſtig",
             "sung": "ſung",
@@ -2396,7 +2460,7 @@ _END_REPLACEMENTS = [
         },
         "k": {
             "ssik": "ſſik",
-            "stik": "stik",
+            "stik": "ſtik",
             "sik": "ſik",
         },
         "l": {
@@ -2429,6 +2493,7 @@ _END_REPLACEMENTS = [
             "ssteten": "ſſteten",
             "sikern": "ſikern",
             "sstein": "sſtein",
+            "sterin": "ſterin",
             "steten": "ſteten",
             "sseln": "ſſeln",
             "ssern": "ſſern",
@@ -2485,14 +2550,17 @@ _END_REPLACEMENTS = [
         "s": {   
             "sschors": "ſschors",
             "ssereis": "ſſereis",
+            "ssnacks": "sſnacks",
             "sstetes": "ſſtetes",
             "schips": "schips",
             "schors": "schors",
             "sereis": "ſereis",
+            "snacks": "ſnacks",
             "ssells": "ſſells",
             "sserls": "ſſerls",
             "sseurs": "ſſeurs",
             "ssings": "ſſings",
+            "ssnack": "sſnack",
             "ssoids": "ſſoids",
             "stetes": "ſtetes",
             "chips": "chips",
@@ -2502,6 +2570,8 @@ _END_REPLACEMENTS = [
             "sichs": "ſichs",
             "sings": "ſings",
             "sitis": "ſitis",
+            "smogs": "ſmogs",
+            "snack": "ſnack",
             "soids": "ſoids",
             "ssels": "ſſels",
             "ssärs": "ſſärs",
@@ -2557,6 +2627,64 @@ _END_REPLACEMENTS = [
     },
 ]
 
+_POST_PROCESS_REPLACEMENTS = {
+    # english loanwords with sh
+    "cash": "caſh",
+    "crash": "craſh",
+    "dashboard": "daſhboard",
+    "finish": "finiſh",
+    "fashions": "faſhionſ",
+    "fashion": "faſhion",
+    "hash": "haſh",
+    "mosh": "moſh",
+    "shampoo": "ſhampoo",
+    "shoot": "ſhoot",
+    "sshows": "sſhowſ",
+    "sshow": "sſhow",
+    "shows": "ſhowſ",
+    "show": "ſhow",
+    "slash": "ſlaſh",
+    "smash": "ſmaſh",
+    "flashs": "flaſhſ",
+    "flash": "flaſh",
+    "push": "puſh",
+    "wash": "waſh",
+
+    # sl
+    "islam": "iſlam",
+    "moslem": "moſlem",
+    "muslim": "muſlim",
+    "slip": "ſlip",
+    "slogan": "ſlogan",
+    "sislam": "siſlam",
+
+    # sm
+    "sommersmog": "ſommerſmog",
+    "smoothie": "ſmoothie",
+    "smart": "ſmart",
+    "smile": "ſmile",
+    "smoke": "ſmoke",
+    "smalltalk": "ſmalltalk",
+
+    # sn
+    "filmsnob": "filmſnob",
+    "kultursnob": "kulturſnob",
+    "versnobt": "verſnopt",
+
+    # sr
+    "sisrael": "siſrael",
+    "israel": "iſrael",
+
+    # sb
+    "gasbest": "gasbeſt",
+    "asbests": "aſbeſtſ",
+    "asbest": "aſbeſt",
+
+    # sp
+    "asphalts": "aſphaltſ",
+    "asphalt": "aſphalt",
+}
+
 # exception: gameshow (perhaps even just "show" -> "ſhow")
 _dict_processed = False
 
@@ -2565,7 +2693,7 @@ _SHOW_DEBUG = False
 UNKNOWN_S = "╳"
 
 def _process_dict():
-    global _REPLACEMENTS, _START_REPLACEMENTS, _END_REPLACEMENTS, _dict_processed
+    global _REPLACEMENTS, _START_REPLACEMENTS, _END_REPLACEMENTS, _POST_PROCESS_REPLACEMENTS, _dict_processed
     if _dict_processed:
         return
     _REPLACEMENTS = {
@@ -2580,8 +2708,6 @@ def _process_dict():
         for letter in sorted(_START_REPLACEMENTS.keys(), key=lambda x: (-len(x), x[0]))
     }
 
-
-
     _END_REPLACEMENTS = [
         {
             letter.replace("s", UNKNOWN_S).replace("ſ", UNKNOWN_S): {
@@ -2592,6 +2718,11 @@ def _process_dict():
         }
         for letter_length_index in range(3)
     ]
+
+    _POST_PROCESS_REPLACEMENTS = {
+        key.replace("s", UNKNOWN_S): value
+        for key, value in _POST_PROCESS_REPLACEMENTS.items()
+    }
 
 
 def german_conversion(text):
@@ -2695,7 +2826,7 @@ def german_conversion(text):
     if replacements_dict is not None:
         for key, replacement in replacements_dict.items():
             clean_text, made_replacement = smart_replace(
-                clean_text, key, replacement, restrict_to_end=True
+                clean_text, key, replacement, restrict_to_end=True, forces_replacement=True
             )
             if made_replacement:
                 break
@@ -2720,6 +2851,16 @@ def german_conversion(text):
         clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
         clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
 
+    # runs through post-process replacements.
+    if _SHOW_DEBUG:
+        print("doing post-process replacments")
+    for key, replacement in _POST_PROCESS_REPLACEMENTS.items():
+        clean_text, made_replacement = smart_replace(
+            clean_text, key, replacement, forces_replacement=True
+        )
+        if made_replacement:
+            break
+
     return clean_text
 
 
@@ -2729,6 +2870,7 @@ def smart_replace(
     replacement,
     restrict_to_start=False,
     restrict_to_end=False,
+    forces_replacement=False
 ):
     made_replacement = False
 
@@ -2736,7 +2878,7 @@ def smart_replace(
         return text, made_replacement
 
     # locates the position of every letter S in the <replacement> term.
-    search_chars = "sſ" # if not restrict_to_end else f"sſ{UNKNOWN_S}"
+    search_chars = "sſ" if not forces_replacement else f"sſ{UNKNOWN_S}"
     s_indices = [
         i for i, char
         in enumerate(replacement)
@@ -2746,29 +2888,7 @@ def smart_replace(
     if n_unknowns == 0:
         return text, made_replacement
 
-    """
-    # refines the range of modification as specified.
-    old_snippet = ""
-    if len(search_term) < len(text):
-        if restrict_to_end:
-            old_snippet = text[:-len(search_term)]
-            text = text[-len(search_term):]
-        elif restrict_to_start:
-            old_snippet = text[len(search_term):]
-            text = text[:len(search_term)]"""
     
-    '''
-    NECESSARY? UNCERTAIN
-    if n_unknowns <= 1:
-        show_debug = search_term in text
-        if _SHOW_DEBUG and show_debug:
-            print(f"{text} -> {search_term} -> ", end="")
-        text = text.replace(search_term, replacement)
-        if _SHOW_DEBUG and show_debug:
-            print(text)
-        return old_snippet + text if restrict_to_end else text + old_snippet'''
-
-    forces_replacement = restrict_to_end
 
     # the replacement term is taken
     # and every possible combination of
@@ -2793,16 +2913,6 @@ def smart_replace(
                 new_string[i] = UNKNOWN_S
         keys.append("".join(new_string))
 
-    # now each unique search term is used as the search term
-    # in <text> and replaced with the original <replacement> term.
-    '''for key in keys:
-        show_debug = key in text
-        if _SHOW_DEBUG and show_debug:
-            print(f"{text} -> {key} -> ", end="")
-        text = text.replace(key, replacement)
-        if _SHOW_DEBUG and show_debug:
-            print(text)'''
-
     if not restrict_to_start and not restrict_to_end:
         #old_text = text
         for key in keys:
@@ -2810,6 +2920,9 @@ def smart_replace(
             if show_debug:
                 print(f"{text} -> {key} -> {replacement}")
             text = text.replace(key, replacement)
+            # if i put the primary replacements in order...
+            # then i can break once replacement is found.
+            # ---
             #if old_text != text:
             #    made_replacement = True
             #    break
@@ -2833,5 +2946,4 @@ def smart_replace(
                 made_replacement = True
                 break
 
-    #return old_snippet + text if restrict_to_end else text + old_snippet
     return text, made_replacement
