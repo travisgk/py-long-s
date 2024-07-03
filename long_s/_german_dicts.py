@@ -51,8 +51,8 @@ _REPLACEMENTS = {
     "sadressat": "sadreſſat",
     "adressat": "adreſſat",
     "auster": "auſter",
-    "baseballs": "baſeballſ", # UNCERTAIN
-    "baseball": "baſeball", # UNCERTAIN
+    "baseballs": "baſeballſ",  # UNCERTAIN
+    "baseball": "baſeball",  # UNCERTAIN
     "gottessöhne": "gottesſöhne",
     "renaissance": "renaiſſance",
     "bessarab": "beſsarab",
@@ -118,7 +118,6 @@ _REPLACEMENTS = {
     "dasselb": "dasſelb",
     "denselb": "denſelb",
     "demselb": "demſelb",
-
     # dis
     "disharmonie": "disharmonie",
     "diskant": "diskant",
@@ -171,12 +170,10 @@ _REPLACEMENTS = {
     "ssystem": "sſyſtem",
     "system": "ſyſtem",
     "atmosphäre": "atmoſphäre",
-    
-    #"messer": "meſſer",
+    # "messer": "meſſer",
     "charakterslot": "charakterſlot",
     "kartenslot": "kartenſlot",
     "kreuzslot": "kreuzſlot",
-
     # sk
     "sskizz": "sſkizz",
     "freizeitskipper": "freizeitſkipper",
@@ -191,7 +188,6 @@ _REPLACEMENTS = {
     "skulptur": "ſkulptur",
     "sskandal": "sſkandal",
     "skandal": "ſkandal",
-
     # sc
     "script": "ſcript",
     "score": "ſcore",
@@ -201,14 +197,12 @@ _REPLACEMENTS = {
     "screenshot": "ſcreenſhot",
     "screen": "ſcreen",
     "scandal": "ſcandal",
-
     "majestäts": "majſstäts",
     "majestät": "majeſtät",
     "messung": "meſſung",
     "messu": "meſsu",
     "messins": "meſsinſ",
     "missach": "miſsach",
-
     "prozessors": "prozeſſors",
     "prozessor": "prozeſſor",
     "prozesses": "prozeſses",
@@ -217,38 +211,34 @@ _REPLACEMENTS = {
     "sache": "ſache",
     "ssöl": "ſsöl",
     "kreischef": "kreischef",
-
     "sschossest": "sſchoſſeſt",
-    "sschosses": "sſchoſſes", # sſchoſses
+    "sschosses": "sſchoſſes",  # sſchoſses
     "sschossen": "sſchoſſen",
     "sschlossest": "sſchloſſeſt",
     "sschlosses": "sſchloſses",
     "sschlossen": "sſchloſſen",
     "sschlosser": "sſchloſſer",
     "sschloss": "sſchloſs",
-    "sschlusses": "sſchluſſes", # sſchluſses
+    "sschlusses": "sſchluſſes",  # sſchluſses
     "sschluss": "sſchluſs",
     "sstoff": "sſtoff",
-
     "schossest": "ſchoſſeſt",
-    "schosses": "ſchoſſes", # ſchoſses
+    "schosses": "ſchoſſes",  # ſchoſses
     "schossen": "ſchoſſen",
     "schlossest": "ſchloſſeſt",
-    "schlosses": "ſchloſſes", # ſchloſses
+    "schlosses": "ſchloſſes",  # ſchloſses
     "schlossen": "ſchloſſen",
     "schlosser": "ſchloſſer",
     "schloss": "ſchloſs",
-    "schlusses": "ſchluſſes", # ſchluſses
+    "schlusses": "ſchluſſes",  # ſchluſses
     "schluss": "ſchluſs",
     "sspiel": "sſpiel",
     "spiel": "ſpiel",
     "sstoff": "sſtoff",
     "stoff": "ſtoff",
     "schemie": "schemie",
-
     "sselbs": "sſelbſ",
     "selbs": "ſelbſ",
-
     # aus
     "sausarbeit": "sausarbeit",
     "ausarbeit": "ausarbeit",
@@ -256,15 +246,12 @@ _REPLACEMENTS = {
     "kausa": "kauſa",
     "schausa": "ſchauſa",
     "ausa": "ausa",
-
     "hausä": "hausä",
     "ausä": "auſä",
-
     "sausen": "ſauſen",
     "ausen": "auſen",
     "sauses": "ſauſeſ",
     "auses": "auseſ",
-
     "ausib": "auſib",
     "ausic": "auſic",
     "ausid": "ausid",
@@ -275,21 +262,15 @@ _REPLACEMENTS = {
     "ausip": "auſip",
     "ausisch": "auſiſch",
     "ausit": "auſit",
-
-
     "bauso": "bauſo",
     "auso": "auso",
-
     "ausu": "ausu",
-
     "ausüb": "ausüb",
     "ausü": "auſü",
-
     "auss": "ausſ",
     "bausp": "bauſp",
     "sausp": "sausp",
     "ausp": "ausp",
-
     "saustrag": "saustrag",
     "austrag": "austrag",
     "saustrieb": "saustrieb",
@@ -321,17 +302,13 @@ _REPLACEMENTS = {
     "stheor": "stheor",
     "stheater": "stheater",
     "spädagog": "spädagog",
-
     "hübsch": "hübſch",
-
-
     # global suffixes
     "wäsch": "wäſch",
     "ässchens": "äſschenſ",
     "össchens": "öſſchenſ",
     "ässchen": "äſschen",
     "össchen": "öſſchen",
-
     "döschen": "döschen",
     "höschen": "höschen",
     "röschen": "röschen",
@@ -339,17 +316,12 @@ _REPLACEMENTS = {
     "öschens": "öſchenſ",
     "äschen": "äschen",
     "öschen": "öſchen",
-
     # -tätigkeit
     "stätigkeiten": "stätigkeiten",
     "stätigkeit": "stätigkeit",
-
     # -thetik UNCERTAIN (s and t(h) sound are separated)
     "sthetik": "ſthetik",
-
     # sch- combos
-    
-
     "sscha": "sſcha",
     "sschä": "sſchä",
     "sschi": "sſchi",
@@ -357,13 +329,10 @@ _REPLACEMENTS = {
     "sschö": "sſchö",
     "sschu": "sſchu",
     "sschü": "sſchü",
-
     "asch": "aſch",
     "ischens": "iſchenſ",
     "ische": "iſche",
-
-
-    #"sscha": "sſcha",
+    # "sscha": "sſcha",
     "schä": "ſchä",
     "schi": "ſchi",
     "scho": "ſcho",
@@ -371,7 +340,6 @@ _REPLACEMENTS = {
     "schu": "ſchu",
     "schü": "ſchü",
     "schy": "ſchy",
-
     "schron": "schron",
     "schb": "ſchb",
     "schc": "ſchc",
@@ -394,7 +362,6 @@ _REPLACEMENTS = {
     "schy": "ſchy",
     "schz": "ſchz",
     "ssch": "sſch",
-
     "üsschen": "üſschen",
     "üschen": "üſchen",
     "glückss": "glücksſ",
@@ -403,8 +370,6 @@ _REPLACEMENTS = {
     "stücks": "stücks",
     "szurück": "szurück",
     "ücks": "ückſ",
-
-
     # s preceeded by consonants.
     "ungss": "ungsſ",
     "bss": "bsſ",
@@ -423,76 +388,64 @@ _REPLACEMENTS = {
     "sss": "ſsſ",
     "tss": "tsſ",
     "wss": "wsſ",
-
     "ungs": "ungs",
     "cs": "cſ",
     "ks": "kſ",
     "ßs": "ßſ",
     "xs": "xſ",
     "zs": "zſ",
-
     # sp followed by combos
     "sspä": "sſpä",
     "sspü": "sſpü",
-
     "spä": "ſpä",
-    "spü": "ſpü", 
+    "spü": "ſpü",
     "spy": "spy",
-
     "sspf": "ſspf",
     "sspl": "ſspl",
-
     "spb": "ſpb",
     "spc": "ſpc",
     "spd": "ſpd",
     "spf": "spf",
     "spl": "spl",
     "sps": "spſ",
-
     # sk followed by combos.
     "ssklav": "sſklav",
-    "sskl": "ſskl", # UNCERTAIN
+    "sskl": "ſskl",  # UNCERTAIN
     "sskn": "ſskn",
-
-    "sklav": "ſklav", # UNCERTAIN
-    "skb": "skb", # UNCERTAIN
-    "skf": "skf", # UNCERTAIN
-    "skj": "skj", # UNCERTAIN
-    "skl": "skl", # UNCERTAIN
-    "skm": "skm", # UNCERTAIN
-    "skn": "skn", # UNCERTAIN
-    "skp": "skp", # UNCERTAIN
+    "sklav": "ſklav",  # UNCERTAIN
+    "skb": "skb",  # UNCERTAIN
+    "skf": "skf",  # UNCERTAIN
+    "skj": "skj",  # UNCERTAIN
+    "skl": "skl",  # UNCERTAIN
+    "skm": "skm",  # UNCERTAIN
+    "skn": "skn",  # UNCERTAIN
+    "skp": "skp",  # UNCERTAIN
     "skq": "skq",
-    "sks": "skſ", # UNCERTAIN
-    "skt": "skt", # UNCERTAIN
-    "skv": "skv", # UNCERTAIN
-    "skw": "skw", # UNCERTAIN
-    "skz": "skz", # UNCERTAIN
-
+    "sks": "skſ",  # UNCERTAIN
+    "skt": "skt",  # UNCERTAIN
+    "skv": "skv",  # UNCERTAIN
+    "skw": "skw",  # UNCERTAIN
+    "skz": "skz",  # UNCERTAIN
     # st followed by combos.
     "sstäte": "ſstäte",
-    #"sstät": "sſtät",
+    # "sstät": "sſtät",
     "sstä": "sſtä",
     "sstö": "sſtö",
     "sstü": "sſtü",
     "sstyl": "sſtyl",
     "ssty": "ſsty",
     "stäte": "stäte",
-
-
-    #"stät": "ſtät",
+    # "stät": "ſtät",
     "stä": "ſtä",
     "stö": "ſtö",
     "stü": "ſtü",
     "styl": "ſtyl",
     "sty": "sty",
-
     "sstg": "ſſtg",
     "sstl": "ſſtl",
     "sstm": "ſſtm",
     "ssts": "ſſtſ",
     "sstz": "ſſtz",
-
     "stst": "ſtſt",
     "stb": "ſtb",
     "stc": "ſtc",
@@ -508,8 +461,7 @@ _REPLACEMENTS = {
     "stq": "ſtq",
     "stv": "ſtv",
     "stw": "ſtw",
-    "stz": "ſtz", # UNCERTAIN
-
+    "stz": "ſtz",  # UNCERTAIN
     # double s with vowels
     "assa": "aſſa",
     "assä": "asſä",
@@ -517,7 +469,7 @@ _REPLACEMENTS = {
     "asses": "aſseſ",
     "asse": "aſſe",
     "assi": "aſſi",
-    "asson": "aſſon", # UNCERTAIN
+    "asson": "aſſon",  # UNCERTAIN
     "assö": "aſsö",
     "assungs": "aſſungs",
     "assung": "aſſung",
@@ -525,13 +477,11 @@ _REPLACEMENTS = {
     "assyr": "aſſyr",
     "assy": "asſy",
     "assas": "aſſaſ",
-
     "ässer": "äſſer",
     "ässes": "äſſeſ",
     "ässe": "äſſe",
     "ässi": "äſſi",
     "ässu": "äſſu",
-
     "essatt": "eſsatt",
     "essas": "eſsaſ",
     "essan": "eſsan",
@@ -544,7 +494,6 @@ _REPLACEMENTS = {
     "esso": "eſſo",
     "essö": "esſö",
     "essy": "esſy",
-
     "rissa": "riſsa",
     "issa": "isſa",
     "issä": "isſä",
@@ -554,7 +503,6 @@ _REPLACEMENTS = {
     "issi": "iſſi",
     "isso": "isſo",
     "issö": "iſsö",
-
     "ossac": "oſsac",
     "ossam": "oſſam",
     "ossar": "oſsar",
@@ -568,10 +516,8 @@ _REPLACEMENTS = {
     "ossö": "oſsö",
     "ossu": "oſſu",
     "ossü": "osſü",
-
     "össe": "öſſe",
     "össi": "öſſi",
-
     "aussa": "ausſa",
     "aussä": "ausſä",
     "ausse": "ausſe",
@@ -580,24 +526,19 @@ _REPLACEMENTS = {
     "aussö": "ausſö",
     "aussu": "ausſu",
     "aussy": "ausſy",
-
     "ussa": "uſsa",
     "ussest": "uſſeſt",
-    "usses": "uſſeſ", # UNCERTAIN
-    "usse": "uſſe", # UNCERTAIN
-    #"ussi": "uſsi", # UNCERTAIN
+    "usses": "uſſeſ",  # UNCERTAIN
+    "usse": "uſſe",  # UNCERTAIN
+    # "ussi": "uſsi", # UNCERTAIN
     "gusso": "guſso",
     "usso": "usſo",
     "ussö": "usſö",
     "ussung": "uſſung",
     "ussu": "usſu",
-
     "üsse": "üſſe",
     "üssi": "üſſi",
-
     "ysse": "yſſe",
-
-
     # occurrences, mostly with double letters of some kind.
     "ssassi": "ſsaſſi",
     "ssabot": "sſabot",
@@ -625,9 +566,8 @@ _REPLACEMENTS = {
     "sabot": "ſabot",
     "sab": "sab",
     "saj": "ſaj",
-    "saq": "saq",   
+    "saq": "saq",
     "saw": "ſaw",
-
     "ssäb": "sſäb",
     "ssäc": "sſäc",
     "ssäf": "sſäf",
@@ -638,7 +578,6 @@ _REPLACEMENTS = {
     "säss": "ſäſſ",
     "sätt": "ſätt",
     "ssä": "sſä",
-
     "ssesch": "ſſeſch",
     "sseff": "ſseff",
     "ssell": "ſſell",
@@ -662,7 +601,6 @@ _REPLACEMENTS = {
     "sett": "ſett",
     "sef": "ſef",
     "sev": "ſev",
-
     "ssionss": "ſſionsſ",
     "ssions": "ſſionsſ",
     "ssisch": "ſſiſch",
@@ -690,7 +628,6 @@ _REPLACEMENTS = {
     "sik": "ſik",
     "siv": "ſiv",
     "siw": "ſiw",
-
     "ssonn": "sſonn",
     "ssorr": "ſſorr",
     "ssob": "ſsob",
@@ -718,7 +655,6 @@ _REPLACEMENTS = {
     "sov": "ſov",
     "sow": "ſow",
     "soz": "ſoz",
-
     "ssöh": "sſöh",
     "ssök": "ſsök",
     "ssöl": "ſsöl",
@@ -734,7 +670,6 @@ _REPLACEMENTS = {
     "sön": "ſön",
     "sör": "ſör",
     "sös": "söſ",
-
     "ssungen": "ſſungen",
     "ssungss": "ſſungsſ",
     "ssungs": "ſſungs",
@@ -746,11 +681,10 @@ _REPLACEMENTS = {
     "ssuh": "ſsuh",
     "ssul": "sſul",
     "ssup": "sſup",
-
     "sungen": "ſungen",
     "sungss": "ſungsſ",
     "sungs": "ſungs",
-    # "sungss": 
+    # "sungss":
     "suff": "ſuff",
     "sugg": "ſugg",
     "sukk": "ſukk",
@@ -764,7 +698,6 @@ _REPLACEMENTS = {
     "sul": "ſul",
     "sup": "ſup",
     "sut": "sut",
-
     "ssü": "sſü",
     "süb": "süb",
     "süc": "ſüc",
@@ -775,10 +708,8 @@ _REPLACEMENTS = {
     "süm": "ſüm",
     "sün": "ſün",
     "süp": "ſüp",
-
     "ssy": "sſy",
     "sy": "ſy",
-
     # terms starting with s and ending with t + consonant.
     "ssatg": "ſſatg",
     "ssatk": "ſſatk",
@@ -792,10 +723,8 @@ _REPLACEMENTS = {
     "satm": "satm",
     "satr": "satr",
     "satz": "ſatz",
-    
     "ssätz": "sſätz",
     "sätz": "ſätz",
-    
     "sseth": "ſſeth",
     "ssetr": "ſſetr",
     "ssety": "ſſety",
@@ -814,7 +743,6 @@ _REPLACEMENTS = {
     "setw": "ſetw",
     "sety": "ſety",
     "setz": "ſetz",
-    
     "ssitz": "sſitz",
     "sition": "ſition",
     "sitb": "ſitb",
@@ -834,18 +762,13 @@ _REPLACEMENTS = {
     "sitw": "ſitw",
     "sity": "ſity",
     "sitz": "ſitz",
-
     "soth": "ſoth",
     "sotr": "ſotr",
-
     # s with eszett
     "saß": "ſaß",
     "soß": "ſoß",
     "söß": "ſöß",
     "süß": "ſüß",
-
-
-
     # suffixes.
     "bars": "barſ",
     "becks": "beckſ",
@@ -895,7 +818,7 @@ _REPLACEMENTS = {
     "reichs": "reichs",
     "richs": "richſ",
     "sals": "ſalſ",
-    #"sams": "ſams",
+    # "sams": "ſams",
     "sans": "sanſ",
     "sches": "ſcheſ",
     "seits": "ſeits",
@@ -1116,8 +1039,8 @@ _START_REPLACEMENTS = {
         "dors": "dorſ",
         "drüs": "drüſ",
         "das": "das",
-        #"des": "deſ", UNCERTAIN
-        #"dis": "dis",
+        # "des": "deſ", UNCERTAIN
+        # "dis": "dis",
     },
     "e": {
         "ermessens": "ermeſſens",
@@ -1156,8 +1079,8 @@ _START_REPLACEMENTS = {
         "ess": "eſs",
     },
     "f": {
-        #"flaschens": "flaſchenſ",
-        #"flaschen": "flaſchen",
+        # "flaschens": "flaſchenſ",
+        # "flaschen": "flaſchen",
         "fliesens": "flieſenſ",
         "fernges": "ferngeſ",
         "fernseh": "fernſeh",
@@ -1675,7 +1598,7 @@ _START_REPLACEMENTS = {
         "tiefs": "tiefſ",
         "tiers": "tierſ",
         "todes": "todes",
-        #"trans": "tranſ",
+        # "trans": "tranſ",
         "trass": "traſſ",
         "trost": "troſt",
         "turms": "turmſ",
@@ -1943,16 +1866,15 @@ _END_REPLACEMENTS = [
             "sterinnen": "ſterinnen",
             "serinnen": "ſerinnen",
             "ssteinen": "sſteinen",
-            #"ssinnen": "ſſinnen",
+            # "ssinnen": "ſſinnen",
             "sstenen": "ſſtenen",
             "steinen": "ſteinen",
             "stionen": "stionen",
-            #"sinnen": "ſinnen",
+            # "sinnen": "ſinnen",
             "sernen": "ſernen",
             "sionen": "ſionen",
             "ssinen": "ſſinen",
             "stenen": "ſtenen",
-
             "sinen": "ſinen",
         },
         "ner": {
@@ -2199,7 +2121,6 @@ _END_REPLACEMENTS = [
             "stes": "ſtes",
         },
     },
-
     {
         "em": {
             "sistischem": "ſiſtiſchem",
@@ -2220,8 +2141,7 @@ _END_REPLACEMENTS = [
             "samem": "ſamem",
             "schem": "ſchem",
             "sivem": "ſivem",
-        },        
-
+        },
         "en": {
             "sistischen": "ſiſtiſchen",
             "istischen": "iſtiſchen",
@@ -2408,7 +2328,6 @@ _END_REPLACEMENTS = [
             "sats": "ſats",
         },
     },
-
     {
         "d": {
             "chsend": "chſend",
@@ -2486,7 +2405,7 @@ _END_REPLACEMENTS = [
             "serlei": "ſerlei",
             "sserei": "ſſerei",
             "serei": "ſerei",
-            #"sei": "sei",
+            # "sei": "sei",
             "ski": "ſki",
             "ssi": "ſſi",
             "si": "ſi",
@@ -2587,7 +2506,7 @@ _END_REPLACEMENTS = [
             "ser": "ſer",
             "sär": "ſär",
         },
-        "s": {   
+        "s": {
             "sschors": "ſschors",
             "ssereis": "ſſereis",
             "ssnacks": "sſnacks",
@@ -2689,7 +2608,6 @@ _POST_PROCESS_REPLACEMENTS = {
     "flash": "flaſh",
     "push": "puſh",
     "wash": "waſh",
-
     # sl
     "islam": "iſlam",
     "moslem": "moſlem",
@@ -2698,7 +2616,6 @@ _POST_PROCESS_REPLACEMENTS = {
     "slogan": "ſlogan",
     "sislam": "siſlam",
     "slawisch": "ſlawiſch",
-
     # sm
     "sommersmog": "ſommerſmog",
     "smoothie": "ſmoothie",
@@ -2706,21 +2623,17 @@ _POST_PROCESS_REPLACEMENTS = {
     "smile": "ſmile",
     "smoke": "ſmoke",
     "smalltalk": "ſmalltalk",
-
     # sn
     "filmsnob": "filmſnob",
     "kultursnob": "kulturſnob",
     "versnobt": "verſnopt",
-
     # sr
     "sisrael": "siſrael",
     "israel": "iſrael",
-
     # sb
     "gasbest": "gasbeſt",
     "asbests": "aſbeſtſ",
     "asbest": "aſbeſt",
-
     # sp
     "asphalts": "aſphaltſ",
     "asphalt": "aſphalt",
@@ -2734,13 +2647,13 @@ _FINAL_REPLACEMENTS = {
 
 _dict_processed = False
 
+
 def process_dicts():
     global _REPLACEMENTS, _START_REPLACEMENTS, _END_REPLACEMENTS, _POST_PROCESS_REPLACEMENTS, _FINAL_REPLACEMENTS, _dict_processed
     if _dict_processed:
         return
     _REPLACEMENTS = {
-        key.replace("s", UNKNOWN_S): value
-        for key, value in _REPLACEMENTS.items()
+        key.replace("s", UNKNOWN_S): value for key, value in _REPLACEMENTS.items()
     }
     _START_REPLACEMENTS = {
         letter: {
@@ -2767,8 +2680,7 @@ def process_dicts():
     }
 
     _FINAL_REPLACEMENTS = {
-        key.replace("s", UNKNOWN_S): value
-        for key, value in _FINAL_REPLACEMENTS.items()
+        key.replace("s", UNKNOWN_S): value for key, value in _FINAL_REPLACEMENTS.items()
     }
 
 

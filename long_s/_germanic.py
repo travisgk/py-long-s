@@ -3,9 +3,10 @@ import re
 from unidecode import unidecode
 from ._german_dicts import *
 
+
 def english_conversion(text):
-    ROUND_S_BEFORE_BK = False # True in 17th and early 18th century
-    
+    ROUND_S_BEFORE_BK = False  # True in 17th and early 18th century
+
     if ROUND_S_BEFORE_BK:
         # selects every S that has a letter after it,
         # so long as that letter is not B nor K.
@@ -20,34 +21,37 @@ def english_conversion(text):
     excluded_indices = [m.start() for m in re.finditer(pattern, text)]
     indices = [i for i in indices if i not in excluded_indices]
     for i in indices:
-        text = text[:i] + "ſ" + text[i + 1: ]
+        text = text[:i] + "ſ" + text[i + 1 :]
 
     # replaces any occurrence of "ſſſ" with "ſsſ".
     pattern = r"ſſſ"
     indices = [m.start() for m in re.finditer(pattern, text)]
     for i in indices:
-        text = text[:i] + "ſsſ" + text[i + 3: ]
+        text = text[:i] + "ſsſ" + text[i + 3 :]
 
     return text
+
 
 _SHOW_DEBUG = False
 _debug_str = ""
 
+
 def print_debug_str():
     print(_debug_str)
+
 
 def german_conversion(text):
     global _debug_str
     _debug_str = ""
-    SHORT_S_ALWAYS_BEFORE_Z = False # False after 1901.
+    SHORT_S_ALWAYS_BEFORE_Z = False  # False after 1901.
     process_dicts()
-    
+
     clean_text = text.lower()
     if "s" not in clean_text:
         return clean_text
 
     clean_text = clean_text.replace("s", UNKNOWN_S)
-    
+
     # if "s" if the first letter of the word, it will be long.
     if clean_text[0] == UNKNOWN_S:
         clean_text = "ſ" + clean_text[1:]
@@ -60,11 +64,12 @@ def german_conversion(text):
 
     uncertain_indices = [m.start() for m in re.finditer(pattern, clean_text)]
     short_s_indices = [
-        i for i, char in enumerate(clean_text)
+        i
+        for i, char in enumerate(clean_text)
         if char == UNKNOWN_S and i not in uncertain_indices
     ]
     for i in short_s_indices:
-        clean_text = clean_text[:i] + "s" + clean_text[i + 1: ]
+        clean_text = clean_text[:i] + "s" + clean_text[i + 1 :]
 
     clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
     clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
@@ -85,19 +90,19 @@ def german_conversion(text):
         clean_text = clean_text[:-1] + "s"
 
     if text.endswith("sses"):
-        clean_text, _ = _smart_replace( # differs for noun
+        clean_text, _ = _smart_replace(  # differs for noun
             clean_text,
             "sses",
             "ſſes",
-            #"ſses" if text[0].isupper() else "ſſes",
+            # "ſses" if text[0].isupper() else "ſſes",
             restrict_to_end=True,
         )
     elif text.endswith("ses"):
-        clean_text, _ = _smart_replace( # differs for noun
+        clean_text, _ = _smart_replace(  # differs for noun
             clean_text,
             "ses",
             "ſes",
-            #"ses" if text[0].isupper() else "ſes",
+            # "ses" if text[0].isupper() else "ſes",
             restrict_to_end=True,
         )
     elif clean_text[:-1].endswith(f"{UNKNOWN_S}ch"):
@@ -134,7 +139,8 @@ def german_conversion(text):
     if replacements_dict is not None:
         for key, replacement in replacements_dict.items():
             clean_text, made_replacement = _smart_replace(
-                clean_text, key,
+                clean_text,
+                key,
                 replacement,
                 restrict_to_end=True,
                 forces_replacement=True,
@@ -153,7 +159,7 @@ def german_conversion(text):
     if start_pattern_dict is not None:
         for key, replacement in start_pattern_dict.items():
             if UNKNOWN_S not in clean_text:
-                break # i think this is okay
+                break  # i think this is okay
             clean_text, made_replacement = _smart_replace(
                 clean_text, key, replacement, restrict_to_start=True
             )
@@ -177,7 +183,9 @@ def german_conversion(text):
         _debug_str += f"doing final replacements: {clean_text}"
     for key, replacement in get_final_replacements().items():
         clean_text, made_replacement = _smart_replace(
-            clean_text, key, replacement,
+            clean_text,
+            key,
+            replacement,
         )
 
     return clean_text
@@ -189,7 +197,7 @@ def _smart_replace(
     replacement,
     restrict_to_start=False,
     restrict_to_end=False,
-    forces_replacement=False
+    forces_replacement=False,
 ):
     global _debug_str
     made_replacement = False
@@ -199,11 +207,7 @@ def _smart_replace(
 
     # locates the position of every letter S in the <replacement> term.
     search_chars = "sſ" if not forces_replacement else f"sſ{UNKNOWN_S}"
-    s_indices = [
-        i for i, char
-        in enumerate(replacement)
-        if char in search_chars
-    ]
+    s_indices = [i for i, char in enumerate(replacement) if char in search_chars]
     n_unknowns = len(s_indices)
     if n_unknowns == 0:
         return text, made_replacement
@@ -237,14 +241,14 @@ def _smart_replace(
             if show_debug:
                 _debug_str += f"{text} -> {key} -> {replacement}\n"
             text = text.replace(key, replacement)
-            
+
     elif restrict_to_start:
         for key in keys:
             if text.startswith(key):
                 show_debug = _SHOW_DEBUG and key in text
                 if show_debug:
                     _debug_str += f"{text} -> {key} -> {replacement}\n"
-                text = replacement + text[len(key):]
+                text = replacement + text[len(key) :]
                 made_replacement = True
                 break
     else:
@@ -253,7 +257,7 @@ def _smart_replace(
                 show_debug = _SHOW_DEBUG and key in text
                 if show_debug:
                     _debug_str += f"{text} -> {key} -> {replacement}\n"
-                text = text[:-len(key)] + replacement
+                text = text[: -len(key)] + replacement
                 made_replacement = True
                 break
 
