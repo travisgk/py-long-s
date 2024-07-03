@@ -2771,17 +2771,22 @@ def process_dicts():
         for key, value in _FINAL_REPLACEMENTS.items()
     }
 
+
 def get_main_replacements():
     return _REPLACEMENTS
+
 
 def get_start_replacements():
     return _START_REPLACEMENTS
 
+
 def get_end_replacements():
     return _END_REPLACEMENTS
 
+
 def get_post_process_replacements():
     return _POST_PROCESS_REPLACEMENTS
+
 
 def get_final_replacements():
     return _FINAL_REPLACEMENTS

@@ -75,7 +75,7 @@ def german_conversion(text):
     for key, replacement in get_main_replacements().items():
         if UNKNOWN_S not in clean_text:
             break
-        clean_text, made_replacement = smart_replace(clean_text, key, replacement)
+        clean_text, made_replacement = _smart_replace(clean_text, key, replacement)
         if made_replacement:
             clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
             clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
@@ -85,7 +85,7 @@ def german_conversion(text):
         clean_text = clean_text[:-1] + "s"
 
     if text.endswith("sses"):
-        clean_text, _ = smart_replace( # differs for noun
+        clean_text, _ = _smart_replace( # differs for noun
             clean_text,
             "sses",
             "ſſes",
@@ -93,7 +93,7 @@ def german_conversion(text):
             restrict_to_end=True,
         )
     elif text.endswith("ses"):
-        clean_text, _ = smart_replace( # differs for noun
+        clean_text, _ = _smart_replace( # differs for noun
             clean_text,
             "ses",
             "ſes",
@@ -133,7 +133,7 @@ def german_conversion(text):
 
     if replacements_dict is not None:
         for key, replacement in replacements_dict.items():
-            clean_text, made_replacement = smart_replace(
+            clean_text, made_replacement = _smart_replace(
                 clean_text, key,
                 replacement,
                 restrict_to_end=True,
@@ -154,7 +154,7 @@ def german_conversion(text):
         for key, replacement in start_pattern_dict.items():
             if UNKNOWN_S not in clean_text:
                 break # i think this is okay
-            clean_text, made_replacement = smart_replace(
+            clean_text, made_replacement = _smart_replace(
                 clean_text, key, replacement, restrict_to_start=True
             )
             if made_replacement:
@@ -166,7 +166,7 @@ def german_conversion(text):
     if _SHOW_DEBUG:
         _debug_str += f"doing post-process replacements: {clean_text}\n"
     for key, replacement in get_post_process_replacements().items():
-        clean_text, made_replacement = smart_replace(
+        clean_text, made_replacement = _smart_replace(
             clean_text, key, replacement, forces_replacement=True
         )
         if made_replacement:
@@ -176,14 +176,14 @@ def german_conversion(text):
     if _SHOW_DEBUG:
         _debug_str += f"doing final replacements: {clean_text}"
     for key, replacement in get_final_replacements().items():
-        clean_text, made_replacement = smart_replace(
+        clean_text, made_replacement = _smart_replace(
             clean_text, key, replacement,
         )
 
     return clean_text
 
 
-def smart_replace(
+def _smart_replace(
     text,
     search_term,
     replacement,
