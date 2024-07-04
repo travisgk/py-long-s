@@ -2,23 +2,24 @@ import re
 import unicodedata
 from ._romance import french_conversion, italian_conversion, spanish_conversion
 from ._germanic import english_conversion, german_conversion
+from ._german_dicts import UNKNOWN_S
 
 
 def convert(text, lang="en"):
     convert_func = None
     if lang == "en":
         convert_func = english_conversion
+    elif lang == "es":
+        convert_func = spanish_conversion
     elif lang == "fr":
         convert_func = french_conversion
     elif lang == "it":
         convert_func = italian_conversion
-    elif lang == "es":
-        convert_func = spanish_conversion
     elif lang == "de":
         convert_func = german_conversion
 
     if convert_func is None:
-        print("language not found. the options are: en, fr, it, es, de.")
+        print("language not found. the options are: en, es, fr, it, de.")
         return text
 
     results = _split_string_with_indices(text, lang)
