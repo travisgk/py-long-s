@@ -1,5 +1,7 @@
 # long-s
-This python script converts text to use the archaic long S letter ( ſ ) in its spellings. English, Spanish, Italian, French, and German are supported.
+This python script converts text to use the archaic long S letter ( ſ ) in its spellings.
+
+English, Spanish, Italian, French, and German are supported.
 
 ```
 import long_s
@@ -17,5 +19,4 @@ La diſcuſſion était étonnamment perſpicace.
 La diſcuſſione è ſtata ſorprendentemente perſpicace.
 La diſcuſión fue ſorprendentemente perſpicaz.
 Die Diskuſſion war überraſchend aufſchluſsreich.
-
 ```
