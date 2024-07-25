@@ -26,9 +26,9 @@ Die Diskuſſion war überraſchend aufſchluſsreich.
 
 ### German
 
-The program might encounter an occurrence of the letter S in a German word that remains ambiguous, even after the conversion process.
+The script might encounter an occurrence of the letter S in a German word that remains ambiguous, even after the conversion process.
 
-By default, the program will replace any leftover ambiguous S with a long S ( ſ ).
+By default, any leftover ambiguous S will be replaced with a long S ( ſ ).
 
 If it's preferred to leave it up to human interpretation, 
 the program can be explicitly told to leave these ambiguities marked in the returned string:
