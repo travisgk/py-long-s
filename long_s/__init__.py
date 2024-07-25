@@ -5,7 +5,7 @@ from ._germanic import english_conversion, german_conversion
 from ._german_dicts import UNKNOWN_S
 
 
-def convert(text, lang="en", keep_unknown_s=True):
+def convert(text, lang="en", keep_unknown_s=False):
     convert_func = None
     if lang == "en":
         convert_func = english_conversion

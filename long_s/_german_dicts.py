@@ -118,6 +118,18 @@ _REPLACEMENTS = {
     "dasselb": "dasſelb",
     "denselb": "denſelb",
     "demselb": "demſelb",
+
+    "wachstums": "wachstums",
+    "wachstum": "wachstum",
+
+    # stehen and stand
+    "steht": "ſteht",
+    "stehst": "ſtehſt",
+    "stehen": "ſtehen",
+    "stand": "ſtand",
+    "stehe": "ſtehe",
+    "steh": "ſteh",
+
     # dis
     "disharmonie": "disharmonie",
     "diskant": "diskant",
