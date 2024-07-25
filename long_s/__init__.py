@@ -5,7 +5,7 @@ from ._germanic import english_conversion, german_conversion
 from ._german_dicts import UNKNOWN_S
 
 
-def convert(text, lang="en"):
+def convert(text, lang="en", keep_unknown_s=True):
     convert_func = None
     if lang == "en":
         convert_func = english_conversion
@@ -24,10 +24,20 @@ def convert(text, lang="en"):
 
     results = _split_string_with_indices(text, lang)
     for i, old_word in results:
-        new_word = convert_func(old_word)
-        for j in range(len(new_word)):
-            if text[i + j] == "s":
-                text = text[: i + j] + new_word[j] + text[i + j + 1 :]
+        new_word, replacement_made, use_fancy_replace = convert_func(old_word)
+
+        if not replacement_made:
+            continue
+
+        if not use_fancy_replace:
+            text = text[:i] + new_word + text[i + len(new_word):]
+        else:
+            if not keep_unknown_s:
+                new_word = new_word.replace(UNKNOWN_S, "ſ") # defaults to long s
+
+            for j in range(len(new_word)):
+                if text[i + j] == "s":
+                    text = text[: i + j] + new_word[j] + text[i + j + 1 :]
 
     return text
 

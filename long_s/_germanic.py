@@ -5,8 +5,14 @@ from ._german_dicts import *
 
 
 def english_conversion(text):
+    """
+    returns
+    ---
+        string: the converted <text>.
+        bool: if any replacement is made.
+        bool: if any fancy in-place replacements are needed.
+    """
     ROUND_S_BEFORE_BK = False  # True in 17th and early 18th century
-
     if ROUND_S_BEFORE_BK:
         # selects every S that has a letter after it,
         # so long as that letter is not B nor K.
@@ -14,6 +20,7 @@ def english_conversion(text):
     else:
         # selects every S that has any letter after it.
         pattern = r"s(?=[a-zA-Z])"
+
     indices = [m.start() for m in re.finditer(pattern, text)]
 
     # excludes any S that comes before or after the letter F.
@@ -29,7 +36,7 @@ def english_conversion(text):
     for i in indices:
         text = text[:i] + "ſsſ" + text[i + 3 :]
 
-    return text
+    return text, True, True
 
 
 _SHOW_DEBUG = False
@@ -41,15 +48,31 @@ def print_debug_str():
 
 
 def german_conversion(text):
+    """
+    returns
+    ---
+        string: the converted <text>.
+        bool: if any replacement is made.
+        bool: if any fancy in-place replacements are needed.
+    """
     global _debug_str
     _debug_str = ""
+    DEFAULT_UNKNOWNS_TO_LONG_S = False # if False, UNKNOWN_S char may appear
     SHORT_S_ALWAYS_BEFORE_Z = False  # False after 1901.
     process_dicts()
 
-    clean_text = text.lower()
-    if "s" not in clean_text:
-        return clean_text
+    if "s" not in text[1:-2]:
+        replacement_made = False
+        if text.startswith("s"):
+            text = "ſ" + text[1:]
+            replacement_made = True
+        if text[-2] == "s":
+            text = text[:-2] + "ſ" + text[-1]
+            replacement_made = True
+        
+        return text, replacement_made, False # no fancy in-place replacements are needed.
 
+    clean_text = text.lower()
     clean_text = clean_text.replace("s", UNKNOWN_S)
 
     # if "s" if the first letter of the word, it will be long.
@@ -188,7 +211,10 @@ def german_conversion(text):
             replacement,
         )
 
-    return clean_text
+    if DEFAULT_UNKNOWNS_TO_LONG_S:
+        clean_text = clean_text.replace(UNKNOWN_S, "ſ")
+
+    return clean_text, True, True # fancy in-place replacements are needed.
 
 
 def _smart_replace(

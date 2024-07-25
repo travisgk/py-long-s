@@ -3,6 +3,13 @@ from unidecode import unidecode
 
 
 def french_conversion(text):
+    """
+    returns
+    ---
+        string: the converted <text>.
+        bool: if any replacement is made.
+        bool: if any fancy in-place replacements are needed.
+    """
     clean_text = unidecode(text)
 
     # selects every S that has a letter (or hyphen) after it,
@@ -12,10 +19,17 @@ def french_conversion(text):
     for i in indices:
         text = text[:i] + "ſ" + text[i + 1 :]
 
-    return text
+    return text, True, True
 
 
 def italian_conversion(text):
+    """
+    returns
+    ---
+        string: the converted <text>.
+        bool: if any replacement is made.
+        bool: if any fancy in-place replacements are needed.
+    """
     USE_DOUBLE_LONG_WITH_SSI = True
 
     # selects every S that has a letter (or hyphen) after it,
@@ -40,10 +54,17 @@ def italian_conversion(text):
     for i in indices:
         text = text[:i] + "ſs" + text[i + 2 :]
 
-    return text
+    return text, True, True
 
 
 def spanish_conversion(text):
+    """
+    returns
+    ---
+        string: the converted <text>.
+        bool: if any replacement is made.
+        bool: if any fancy in-place replacements are needed.
+    """
     USE_LONG_S_BEFORE_ACCENTED_O = False
 
     # selects every S that has a letter (or hyphen) after it,
@@ -68,4 +89,4 @@ def spanish_conversion(text):
     for i in indices:
         text = text[:i] + "ſs" + text[i + 2 :]
 
-    return text
+    return text, True, True
