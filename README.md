@@ -25,7 +25,7 @@ Die Diskuſſion war überraſchend aufſchluſsreich.
 
 ## German
 
-The script might encounter an occurrence of the letter S in a German word that remains ambiguous, even after the conversion process.
+With German words, the script might encounter an occurrence of the letter S that remains ambiguous, even after the conversion process.
 
 By default, any leftover ambiguous S will be replaced with a long S ( ſ ).
 
