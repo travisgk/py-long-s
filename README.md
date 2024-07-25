@@ -22,7 +22,6 @@ Die Diskuſſion war überraſchend aufſchluſsreich.
 ```
 
 <br>
-<hr>
 
 ### German
 
@@ -36,3 +35,10 @@ the program can be explicitly told to leave these ambiguities marked in the retu
 print(long_s.convert("Mäuschen", lang="de", keep_unknown_s=True))
 ```
 This will print ```Mäu╳chen```, which can be then manually changed to ```Mäuschen```.
+
+<br>
+<hr>
+
+### Special Thanks
+
+Thank you Andrew West of the TeX Users Group for the documentation found under [The Rules for Long S](https://www.tug.org/TUGboat/tb32-1/tb100west.pdf), which was fundamental in writing the conversion functions for English, Spanish, French, and Italian.
