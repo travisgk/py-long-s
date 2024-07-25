@@ -23,7 +23,7 @@ Die Diskuſſion war überraſchend aufſchluſsreich.
 
 <br>
 
-### German
+## German
 
 The script might encounter an occurrence of the letter S in a German word that remains ambiguous, even after the conversion process.
 
