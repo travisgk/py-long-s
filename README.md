@@ -20,3 +20,19 @@ La diſcuſſion était étonnamment perſpicace.
 La diſcuſſione è ſtata ſorprendentemente perſpicace.
 Die Diskuſſion war überraſchend aufſchluſsreich.
 ```
+
+<br>
+<hr>
+
+### German
+
+The program might encounter an occurrence of the letter S in a German word that remains ambiguous, even after the conversion process.
+
+By default, the program will replace any leftover ambiguous S with a long S ( ſ ).
+
+If it's preferred to leave it up to human interpretation, 
+the program can be explicitly told to leave these ambiguities marked in the returned string:
+```
+print(long_s.convert("Mäuschen", lang="de", keep_unknown_s=True))
+```
+This will print ```Mäu╳chen```, which can be then manually changed to ```Mäuschen```.
