@@ -34,7 +34,7 @@ the program can be explicitly told to leave these ambiguities marked in the retu
 ```
 print(long_s.convert("Mäuschen", lang="de", keep_unknown_s=True))
 ```
-This will print ```Mäu╳chen```, which can be then manually changed to ```Mäuschen```.
+This will print ```Mäu╳chen```, which can then be manually changed to ```Mäuschen```.
 
 <br>
 <hr>
