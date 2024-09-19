@@ -4,9 +4,9 @@ from unidecode import unidecode
 from ._german_dicts import *
 
 
-def english_conversion(text):
+def english_conversion(text: str):
     """
-    returns
+    returns english text with the short S placed.
     ---
         string: the converted <text>.
         bool: if any replacement is made.
@@ -47,26 +47,32 @@ def print_debug_str():
     print(_debug_str)
 
 
-def german_conversion(text):
+def german_conversion(text: str):
     """
-    returns
-    ---
-        string: the converted <text>.
-        bool: if any replacement is made.
-        bool: if any fancy in-place replacements are needed.
+    returns german text with the short S placed.
+    returns:
+    - string: the converted <text>.
+    - bool: if any replacement is made.
+    - bool: if any fancy in-place replacements are needed 
+            (to preserve punctuation in original text).
     """
     global _debug_str
     _debug_str = ""
-    DEFAULT_UNKNOWNS_TO_LONG_S = False # if False, UNKNOWN_S char may appear
+    DEFAULT_UNKNOWNS_TO_LONG_S = False # if False, UNKNOWN_S char may appear.
     SHORT_S_ALWAYS_BEFORE_Z = False  # False after 1901.
     process_dicts()
 
     if "s" not in text[1:-2]:
+        # if there are no occurrences of S besides 
+        # the very start and the last two letters,
+        # then the program doesn't need to do complicated searching and replacing.
         replacement_made = False
         if text.startswith("s"):
+            # an S at the start is always long.
             text = "ſ" + text[1:]
             replacement_made = True
         if text[-2] == "s":
+            # an S that's the penultimate letter is always long (uncertain).
             text = text[:-2] + "ſ" + text[-1]
             replacement_made = True
         
@@ -79,12 +85,14 @@ def german_conversion(text):
     if clean_text[0] == UNKNOWN_S:
         clean_text = "ſ" + clean_text[1:]
 
-    # any unknown S that comes before many consonants becomes a short S.
+    # 1) any unknown S that comes before many certain consonants becomes a short S.
     if SHORT_S_ALWAYS_BEFORE_Z:
         pattern = f"{UNKNOWN_S}(?=[aäceikoöp{UNKNOWN_S}tuüyAÄCEIKOÖPTUÜY])"
     else:
         pattern = f"{UNKNOWN_S}(?=[aäceikoöp{UNKNOWN_S}tuüyzAÄCEIKOÖPTUÜYZ])"
 
+    # determines which indices of the string contain a letter S 
+    # whose long/short status remains unknown.
     uncertain_indices = [m.start() for m in re.finditer(pattern, clean_text)]
     short_s_indices = [
         i
@@ -94,38 +102,37 @@ def german_conversion(text):
     for i in short_s_indices:
         clean_text = clean_text[:i] + "s" + clean_text[i + 1 :]
 
+    # particular patterns with double S can now be filled in.
     clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
     clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
 
-    # runs through the primary replacements.
+    # 2) runs through the primary replacements.
     if _SHOW_DEBUG:
         _debug_str += f"\n\n\ndoing main replacements: {clean_text}\n"
     for key, replacement in get_main_replacements().items():
-        if UNKNOWN_S not in clean_text:
+        if UNKNOWN_S not in clean_text: # no more unknowns; for loop is broken.
             break
         clean_text, made_replacement = _smart_replace(clean_text, key, replacement)
-        if made_replacement:
+        if made_replacement: # patterns with double S can now be filled in.
             clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
             clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
 
-    # handles particular end replacements.
-    if clean_text[-1] in [UNKNOWN_S, "ſ"]:
+    # 3) handles particular end replacements.
+    if clean_text[-1] in [UNKNOWN_S, "ſ"]: # an S at the end is always short.
         clean_text = clean_text[:-1] + "s"
 
     if text.endswith("sses"):
-        clean_text, _ = _smart_replace(  # differs for noun
+        clean_text, _ = _smart_replace(
             clean_text,
             "sses",
             "ſſes",
-            # "ſses" if text[0].isupper() else "ſſes",
             restrict_to_end=True,
         )
     elif text.endswith("ses"):
-        clean_text, _ = _smart_replace(  # differs for noun
+        clean_text, _ = _smart_replace(
             clean_text,
             "ses",
             "ſes",
-            # "ses" if text[0].isupper() else "ſes",
             restrict_to_end=True,
         )
     elif clean_text[:-1].endswith(f"{UNKNOWN_S}ch"):
@@ -133,13 +140,18 @@ def german_conversion(text):
     elif clean_text[:-1].endswith(f"{UNKNOWN_S}{UNKNOWN_S}"):
         clean_text = clean_text[:-3] + "ſſ" + clean_text[-1]
 
+    # particular patterns with double S can now be filled in.
     clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
     clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
 
-    # runs through the end replacements.
+    # 4) runs through the end replacements.
     if _SHOW_DEBUG:
         _debug_str += f"doing end replacements: {clean_text}\n"
 
+    # since the end replacements are broken into subdictionaries,
+    # the program must select which of these subdictionaries to use.
+    # the last three letters of the word are used to index these dictionaries,
+    # so the program now finds the dictionary of end replacements to use.
     replacements_dict = None
     if len(clean_text) >= 3:
         end_snippet = clean_text[-3:]
@@ -159,6 +171,8 @@ def german_conversion(text):
         end_snippet = end_snippet.replace("ſ", UNKNOWN_S)
         replacements_dict = get_end_replacements()[2].get(end_snippet)
 
+    # an indexed subdictionary was found,
+    # so its used to apply replacements to the text.
     if replacements_dict is not None:
         for key, replacement in replacements_dict.items():
             clean_text, made_replacement = _smart_replace(
@@ -171,14 +185,21 @@ def german_conversion(text):
             if made_replacement:
                 break
 
+    # particular patterns with double S can now be filled in.
     clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
     clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
 
-    # runs through the start replacements.
+    # 5) runs through the start replacements.
     if _SHOW_DEBUG:
         _debug_str += f"doing start replacements: {clean_text}\n"
+    
+    # the subdictionaries for start replacements 
+    # are indexed by the word's first letter, so that dictionary is found.
     indexing_letter = clean_text[0]
     start_pattern_dict = get_start_replacements().get(indexing_letter)
+    
+    # an indexed subdictionary was found,
+    # so its used to apply replacements to the text.
     if start_pattern_dict is not None:
         for key, replacement in start_pattern_dict.items():
             if UNKNOWN_S not in clean_text:
@@ -188,10 +209,12 @@ def german_conversion(text):
             )
             if made_replacement:
                 break
+        
+        # particular patterns with double S can now be filled in.
         clean_text = clean_text.replace(f"{UNKNOWN_S}s", "ſs")
         clean_text = clean_text.replace(f"s{UNKNOWN_S}", "sſ")
 
-    # runs through the post-process replacements.
+    # 6) runs through the post-process replacements.
     if _SHOW_DEBUG:
         _debug_str += f"doing post-process replacements: {clean_text}\n"
     for key, replacement in get_post_process_replacements().items():
@@ -201,16 +224,13 @@ def german_conversion(text):
         if made_replacement:
             break
 
-    # runs through the final replacements.
+    # 7) runs through the final replacements.
     if _SHOW_DEBUG:
         _debug_str += f"doing final replacements: {clean_text}"
     for key, replacement in get_final_replacements().items():
-        clean_text, made_replacement = _smart_replace(
-            clean_text,
-            key,
-            replacement,
-        )
+        clean_text, made_replacement = _smart_replace(clean_text, key, replacement)
 
+    # 8) cleans up ambiguous cases.
     if DEFAULT_UNKNOWNS_TO_LONG_S:
         clean_text = clean_text.replace(UNKNOWN_S, "ſ")
 
@@ -218,13 +238,19 @@ def german_conversion(text):
 
 
 def _smart_replace(
-    text,
-    search_term,
-    replacement,
-    restrict_to_start=False,
-    restrict_to_end=False,
-    forces_replacement=False,
+    text: str,
+    search_term: str,
+    replacement: str,
+    restrict_to_start: bool=False,
+    restrict_to_end: bool=False,
+    forces_replacement: bool=False,
 ):
+    """
+    searches the given <text> for the <search_term> 
+    and replaces it with <replacement>. this function, however,
+    can take the <search_term> and generate all combinations of
+    the letter S being changed out with "s" or "ſ".
+    """
     global _debug_str
     made_replacement = False
 

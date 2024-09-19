@@ -1,3 +1,9 @@
+"""
+_german_dicts.py
+
+this file contains large dictionaries that are used to convert
+German text to use the archaeic long S (ſ).
+"""
 UNKNOWN_S = "╳"
 
 _REPLACEMENTS = {
@@ -854,6 +860,9 @@ _REPLACEMENTS = {
     "yls": "ylſ",
 }
 
+"""
+these replacements
+"""
 _START_REPLACEMENTS = {
     "a": {
         "abwassers": "abwaſſerſ",
@@ -2660,9 +2669,16 @@ _dict_processed = False
 
 
 def process_dicts():
-    global _REPLACEMENTS, _START_REPLACEMENTS, _END_REPLACEMENTS, _POST_PROCESS_REPLACEMENTS, _FINAL_REPLACEMENTS, _dict_processed
+    """
+    the defined dictionaries above need to have the occurrences of S 
+    in their keys replaced with UNKNOWN_S so that the program can use them.
+    this function will process all the dictionaries if they haven't been already.
+    """
+    global _REPLACEMENTS, _START_REPLACEMENTS, _END_REPLACEMENTS \
+    _POST_PROCESS_REPLACEMENTS, _FINAL_REPLACEMENTS, _dict_processed
     if _dict_processed:
         return
+
     _REPLACEMENTS = {
         key.replace("s", UNKNOWN_S): value for key, value in _REPLACEMENTS.items()
     }
@@ -2678,11 +2694,11 @@ def process_dicts():
         {
             letter.replace("s", UNKNOWN_S).replace("ſ", UNKNOWN_S): {
                 key.replace("s", UNKNOWN_S): value
-                for key, value in _END_REPLACEMENTS[letter_length_index][letter].items()
+                for key, value in _END_REPLACEMENTS[length_index][letter].items()
             }
-            for letter in sorted(_END_REPLACEMENTS[letter_length_index].keys())
+            for letter in sorted(_END_REPLACEMENTS[length_index].keys())
         }
-        for letter_length_index in range(3)
+        for length_index in range(3)
     ]
 
     _POST_PROCESS_REPLACEMENTS = {

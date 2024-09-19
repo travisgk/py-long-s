@@ -5,7 +5,18 @@ from ._germanic import english_conversion, german_conversion
 from ._german_dicts import UNKNOWN_S
 
 
-def convert(text, lang="en", keep_unknown_s=False):
+def convert(text: str, lang: str="en", keep_unknown_s: bool=False):
+    """
+    places the long s (ſ) in a sentence.
+
+    params:
+    - text: the string to convert into archaeic spelling.
+    - lang: the language code for <text>. "en", "es", "fr", "it", or "de".
+    - keep_unknown_s: if True, ambiguous cases of S will be shown as X.
+
+    returns:
+    - the given <text> with the long s (ſ) placed.
+    """
     convert_func = None
     if lang == "en":
         convert_func = english_conversion
@@ -42,10 +53,20 @@ def convert(text, lang="en", keep_unknown_s=False):
     return text
 
 
-_APOSTROPHES = "'"
+def _split_string_with_indices(input_string: str, lang: str):
+    """
+    splits the input string into words and returns their starting indices. 
+    the function also considers language-specific rules for word splitting.
+    
+    params:
+    - input_string: the string to be split.
+    - lang: the language code (e.g., "de" for German) to handle specific rules.
 
-
-def _split_string_with_indices(input_string, lang):
+    returns:
+    - a list of tuples where each tuple contains the start index
+      and the word itself.
+    """
+    APOSTROPHES = "'"
     matches = re.finditer(r"\S+", input_string)
     results = []
     for match in matches:
@@ -63,7 +84,7 @@ def _split_string_with_indices(input_string, lang):
         local_end_index = len(word) - 1
         if lang == "de":
             for i in range(len(word) - 1, -1, -1):
-                if _is_letter(word[i]) or word[i] in _APOSTROPHES:
+                if _is_letter(word[i]) or word[i] in APOSTROPHES:
                     local_end_index = i
                     break
             else:
@@ -78,14 +99,12 @@ def _split_string_with_indices(input_string, lang):
 
         index += local_start_index
         word = word[local_start_index : local_end_index + 1]
-
-        # print(word)
         results.append((index, word))
-    # results = [(match.start(), match.group()) for match in matches]
 
     return results
 
 
-def _is_letter(char):
+def _is_letter(char: str):
+    """returns True if the given <char> is some letter."""
     category = unicodedata.category(char)
     return category.startswith("L")
