@@ -10,12 +10,12 @@ def convert(text: str, lang: str="en", keep_unknown_s: bool=False):
     places the long s (ſ) in a sentence.
 
     params:
-    - text: the string to convert into archaeic spelling.
-    - lang: the language code for <text>. "en", "es", "fr", "it", or "de".
-    - keep_unknown_s: if True, ambiguous cases of S will be shown as X.
+        text: the string to convert into archaeic spelling.
+        lang: the language code for <text>. "en", "es", "fr", "it", or "de".
+        keep_unknown_s: if True, ambiguous cases of S will be shown as X.
 
     returns:
-    - the given <text> with the long s (ſ) placed.
+        string: the given <text> with the long s (ſ) placed.
     """
     convert_func = None
     if lang == "en":

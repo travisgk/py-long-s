@@ -2,10 +2,9 @@ import re
 from unidecode import unidecode
 
 
-def french_conversion(text):
+def french_conversion(text: str):
     """
-    returns
-    ---
+    returns:
         string: the converted <text>.
         bool: if any replacement is made.
         bool: if any fancy in-place replacements are needed.
@@ -22,10 +21,9 @@ def french_conversion(text):
     return text, True, True
 
 
-def italian_conversion(text):
+def italian_conversion(text: str):
     """
-    returns
-    ---
+    returns:
         string: the converted <text>.
         bool: if any replacement is made.
         bool: if any fancy in-place replacements are needed.
@@ -57,10 +55,9 @@ def italian_conversion(text):
     return text, True, True
 
 
-def spanish_conversion(text):
+def spanish_conversion(text: str):
     """
-    returns
-    ---
+    returns:
         string: the converted <text>.
         bool: if any replacement is made.
         bool: if any fancy in-place replacements are needed.

@@ -2674,8 +2674,8 @@ def process_dicts():
     in their keys replaced with UNKNOWN_S so that the program can use them.
     this function will process all the dictionaries if they haven't been already.
     """
-    global _REPLACEMENTS, _START_REPLACEMENTS, _END_REPLACEMENTS \
-    _POST_PROCESS_REPLACEMENTS, _FINAL_REPLACEMENTS, _dict_processed
+    global _REPLACEMENTS, _START_REPLACEMENTS, _END_REPLACEMENTS
+    global _POST_PROCESS_REPLACEMENTS, _FINAL_REPLACEMENTS, _dict_processed
     if _dict_processed:
         return
 

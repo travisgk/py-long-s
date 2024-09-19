@@ -7,7 +7,8 @@ from ._german_dicts import *
 def english_conversion(text: str):
     """
     returns english text with the short S placed.
-    ---
+
+    returns:
         string: the converted <text>.
         bool: if any replacement is made.
         bool: if any fancy in-place replacements are needed.
@@ -50,6 +51,7 @@ def print_debug_str():
 def german_conversion(text: str):
     """
     returns german text with the short S placed.
+
     returns:
     - string: the converted <text>.
     - bool: if any replacement is made.
@@ -250,6 +252,9 @@ def _smart_replace(
     and replaces it with <replacement>. this function, however,
     can take the <search_term> and generate all combinations of
     the letter S being changed out with "s" or "ſ".
+
+    params:
+
     """
     global _debug_str
     made_replacement = False
