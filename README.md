@@ -2,7 +2,8 @@
 This Python script converts text to use the archaic long S letter ( ſ ) in its spellings.
 
 English, Spanish, French, Italian, and German are supported.
-`pip install unidecode` is needed to run conversions for German text.
+<br>
+`pip install unidecode` is required.
 ```
 import long_s
 
