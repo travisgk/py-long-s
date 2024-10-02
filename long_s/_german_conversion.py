@@ -12,9 +12,10 @@ License: MIT License
 import itertools
 import re
 from ._simple_conversions import strip_consonant_accents, transfer_long_S
-from ._german_dicts import *
+from ._german_lists import *
 
 UNKNOWN_S = "φ"
+
 
 def _crossword_replace(text: str, spelling_pattern: str):
     """
@@ -26,7 +27,7 @@ def _crossword_replace(text: str, spelling_pattern: str):
     the spelling pattern and creating every possible spelling combination
     where any letter "s" or "ſ" will be swapped with an UNKNOWN S;
     all of these search terms will always have at least one UNKNOWN S.
-    
+
     The way this function works is analogous to filling in a crossword:
     the program recognizes where patterns can "fit" into the blanks.
 
@@ -44,12 +45,9 @@ def _crossword_replace(text: str, spelling_pattern: str):
     # uses itertools.product to generate all combinations
     # of the search term with any letter S swapped out with
     # an UNKNOWN_S.
-    options = [
-        (c if c not in "ſs" else [c, UNKNOWN_S])
-        for c in spelling_pattern
-    ]
+    options = [(c if c not in "ſs" else [c, UNKNOWN_S]) for c in spelling_pattern]
     combos = itertools.product(*options)
-    possible_terms = [''.join(combo) for combo in combos if UNKNOWN_S in combo]
+    possible_terms = ["".join(combo) for combo in combos if UNKNOWN_S in combo]
 
     old_text = text
     for possible_term in possible_terms:
@@ -65,9 +63,8 @@ def _blueprint_replace(text: str, blueprint_text: str, spelling_pattern: str):
     """
     pattern_without_long_s = spelling_pattern.replace("ſ", "s")
     matched_indices = [
-        m.start() for m in re.finditer(
-            re.escape(pattern_without_long_s), blueprint_text
-        )
+        m.start()
+        for m in re.finditer(re.escape(pattern_without_long_s), blueprint_text)
     ]
 
     for index in matched_indices:
@@ -79,67 +76,104 @@ def _blueprint_replace(text: str, blueprint_text: str, spelling_pattern: str):
 
 def _fill_in_double_s(word: str):
     """Returns the word with a basic pattern with double S filled in."""
+    # print(f"DEBUG: before: {word}")
     word = word.replace(f"{UNKNOWN_S}s", "ſs")
     word = word.replace(f"s{UNKNOWN_S}", "sſ")
+    # print(f"DEBUG: after:  {word}")
     return word
 
 
 def convert_german_word(word: str):
     """Returns German text with the long S (ſ) placed appropriately."""
 
-    DEFAULT_UNKNOWNS_TO_LONG_S = True # True by default.
-    FORCE_SHORT_S_BEFORE_Z = False # False after 1901.
+    DEFAULT_UNKNOWNS_TO_LONG_S = True  # True by default.
+    FORCE_SHORT_S_BEFORE_Z = False  # False after 1901.
     PRINT_DEBUG_TEXT = False
 
     backup_word = word
+
+    if PRINT_DEBUG_TEXT:
+        print(f"Begins) {word}")
+        print(f"Step 0)")
+
     clean_word = strip_consonant_accents(word.lower())
-    blueprint_word = clean_word # used for forced replacements later.
+    exact_matches_list = EXACT_MATCHES.get(clean_word[0])
+
+    if exact_matches_list is not None:
+        for term in exact_matches_list:
+            no_long_s = term.replace("ſ", "s")
+            if clean_word == no_long_s:
+                word = transfer_long_S(term, word)
+                if PRINT_DEBUG_TEXT:
+                    print(f"\t{word}")
+                return word
+
+    blueprint_word = clean_word  # used for forced replacements later.
     clean_word = clean_word[:-1].replace("s", UNKNOWN_S) + clean_word[-1]
 
     if clean_word.startswith(UNKNOWN_S):
         clean_word = "ſ" + clean_word[1:]
-        if word.startswith("s") and UNKNOWN_S not in clean_word:
-            return "ſ" + word[1:]
-    if PRINT_DEBUG_TEXT:
-        print(f"Step 0) {clean_word}")
+
+    if clean_word[-2] == UNKNOWN_S:
+        if clean_word[-1] != "k":
+            clean_word = clean_word[:-2] + "ſ" + clean_word[-1:]
+        else:
+            clean_word = clean_word[:-2] + "s" + clean_word[-1:]
+
+    clean_word = _fill_in_double_s(clean_word)
+
+    if UNKNOWN_S not in clean_word:
+        word = transfer_long_S(clean_word, word)
+        return word
 
     # 1) This step applies basic patterns to try to solve any ambiguous S.
     # ---
     # determines which occurrences of S can't be explicitly decided as
     # being a short S (and thereby which ones must definitely be a short S).
     if FORCE_SHORT_S_BEFORE_Z:
-        pattern = f"{UNKNOWN_S}(?=[aäceikoöp{UNKNOWN_S}tuüy])"
+        pattern = f"{UNKNOWN_S}(?=[aäceikoöpſ{UNKNOWN_S}tuüy])"
     else:
-        pattern = f"{UNKNOWN_S}(?=[aäceikoöp{UNKNOWN_S}tuüyz])"
+        pattern = f"{UNKNOWN_S}(?=[aäceikoöpſ{UNKNOWN_S}tuüyz])"
     uncertain_indices = [m.start() for m in re.finditer(pattern, clean_word)]
-    
+
     # fills in any determined short S from the pattern.
     certain_short_s_indices = [
-        i for i, c in enumerate(clean_word)
+        i
+        for i, c in enumerate(clean_word)
         if c == UNKNOWN_S and i not in uncertain_indices
     ]
     for index in certain_short_s_indices:
-        clean_word = clean_word[:index] + "s" + clean_word[index + 1:]
+        clean_word = clean_word[:index] + "s" + clean_word[index + 1 :]
     clean_word = _fill_in_double_s(clean_word)
+
     if PRINT_DEBUG_TEXT:
-        print(f"Step 1) {clean_word}")
+        print(f"Step 1)\t{clean_word}")
 
     # 2) This step uses the crossword replace function to try to solve
     #    any ambiguous S. A dictionary of spelling patterns that can occur
     #    anywhere in the word are used to try to further solve the spelling.
+    if PRINT_DEBUG_TEXT:
+        print(f"Step 2)")
+
     for term in OMNIPRESENT_PATTERNS:
         if UNKNOWN_S not in clean_word:
-            break # no more unknowns.
+            break  # no more unknowns.
 
         clean_word, made_replacement = _crossword_replace(clean_word, term)
         if made_replacement:
+            if PRINT_DEBUG_TEXT:
+                print(f"\tOMNIPRESENT PATTERN: {term}")
             clean_word = _fill_in_double_s(clean_word)
+
     if PRINT_DEBUG_TEXT:
-        print(f"Step 2) {clean_word}")
+        print(f"\t{clean_word}")
 
     # 3) This step uses the blueprint replace function to try to solve
-    #    any ambiguous S, but only for patterns 
+    #    any ambiguous S, but only for patterns
     #    that occur at the end of words.
+    if PRINT_DEBUG_TEXT:
+        print(f"Step 3)")
+
     ends_list = None
     if len(clean_word) >= 3:
         ends_list = END_PATTERNS.get(clean_word[-3:])
@@ -151,56 +185,64 @@ def convert_german_word(word: str):
     if ends_list is not None:
         for term in ends_list:
             if len(term) <= len(clean_word):
-                clean_snippet = clean_word[-len(term):]
-                blueprint_snippet = blueprint_word[-len(term):]
+                clean_snippet = clean_word[-len(term) :]
+                blueprint_snippet = blueprint_word[-len(term) :]
 
                 clean_snippet, made_replacement = _blueprint_replace(
                     clean_snippet, blueprint_snippet, term
                 )
                 if made_replacement:
-                    clean_word = clean_word[:-len(term)] + clean_snippet
+                    if PRINT_DEBUG_TEXT:
+                        print(f"\tEND PATTERN: {term}")
+                    clean_word = clean_word[: -len(term)] + clean_snippet
                     clean_word = _fill_in_double_s(clean_word)
                     break
+
     if PRINT_DEBUG_TEXT:
-        print(f"Step 3) {clean_word}")
+        print(f"\t{clean_word}")
 
     # 4) This step uses the crossword replace function to try to solve
     #    any ambiguous S, but only for patterns
-    #    that occur at the end of words.
+    #    that occur at the beginning of words.
+    if PRINT_DEBUG_TEXT:
+        print(f"Step 4)")
+
     starts_list = START_PATTERNS.get(clean_word[0])
     if starts_list is not None:
         for term in starts_list:
             if UNKNOWN_S not in clean_word:
-                break # no more unknowns.
+                break  # no more unknowns.
 
             if len(term) <= len(clean_word):
-                clean_snippet = clean_word[:len(term)]
+
+                clean_snippet = clean_word[: len(term)]
                 clean_snippet, made_replacement = _crossword_replace(
                     clean_snippet, term
                 )
                 if made_replacement:
-                    clean_word = clean_snippet + clean_word[len(term):]
+                    if PRINT_DEBUG_TEXT:
+                        print(f"\tSTART PATTERN: {term}")
+                    clean_word = clean_snippet + clean_word[len(term) :]
                     clean_word = _fill_in_double_s(clean_word)
                     break
+
     if PRINT_DEBUG_TEXT:
-        print(f"Step 4) {clean_word}")
+        print(f"\t{clean_word}")
 
     # 5) This step runs postprocess replacements with the crossword search.
     for term in POSTPROCESS_PATTERNS:
         if UNKNOWN_S not in clean_word:
-            break # no more unknowns.
+            break  # no more unknowns.
 
         clean_word, made_replacement = _crossword_replace(clean_word, term)
         if made_replacement:
             clean_word = _fill_in_double_s(clean_word)
+
     if PRINT_DEBUG_TEXT:
         print(f"Step 5) {clean_word}")
 
     # 6) This step enforces a few exceptional spellings.
     for term in FORCED_OVERWRITES:
-        if UNKNOWN_S not in clean_word:
-            break # no more unknowns.
-
         if len(term) <= len(clean_word):
             clean_word, made_replacement = _blueprint_replace(
                 clean_word, blueprint_word, term
@@ -208,10 +250,12 @@ def convert_german_word(word: str):
             if made_replacement:
                 clean_word = _fill_in_double_s(clean_word)
                 # can't break here b/c search is omnipresent.
+
     if PRINT_DEBUG_TEXT:
         print(f"Step 6) {clean_word}")
 
     # Result) The word is cleaned up and returned.
+
     if DEFAULT_UNKNOWNS_TO_LONG_S:
         clean_word = clean_word.replace(UNKNOWN_S, "ſ")
     word = transfer_long_S(clean_word, word)

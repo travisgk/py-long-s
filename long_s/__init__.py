@@ -17,6 +17,7 @@ from ._split_words import *
 from ._simple_conversions import *
 from ._german_conversion import convert_german_word
 
+
 def get_conversion_func(lang: str):
     """Returns the conversion function used for a particular language."""
     if lang == "en":
@@ -32,7 +33,7 @@ def get_conversion_func(lang: str):
     return None
 
 
-def convert(text: str, lang: str="en", keep_unknown_s: bool=False):
+def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
     """
     Places the long s (ſ) in a sentence and returns it.
 
@@ -47,24 +48,21 @@ def convert(text: str, lang: str="en", keep_unknown_s: bool=False):
     convert_func = get_conversion_func(lang)
 
     if convert_func is None:
-        print(
-            f"language \"{lang}\" not found."
-            "the options are: en, es, fr, it, de."
-        )
+        print(f'language "{lang}" not found.' "the options are: en, es, fr, it, de.")
         return text
 
     # converts each word individually.
     words = split_words_with_indices(text, lang)
     for old_word, start_index in words:
         new_word = convert_func(old_word)
-        
+
         if old_word == new_word:
-            continue # no replacements were made.
+            continue  # no replacements were made.
 
         # overwrite the original occurrences of S.
         for j in range(len(new_word)):
             clip = start_index + j
             if text[clip] == "s":
-                text = text[: clip] + new_word[j] + text[clip + 1 :]
+                text = text[:clip] + new_word[j] + text[clip + 1 :]
 
     return text

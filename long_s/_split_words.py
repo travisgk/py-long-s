@@ -15,6 +15,7 @@ License: MIT License
 import re
 import unicodedata
 
+
 def _is_letter(char: str):
     """Returns True if the given <char> is some letter."""
     category = unicodedata.category(char)
@@ -26,13 +27,13 @@ def split_words_with_indices(text: str, lang: str):
     This function takes the given text and splits it into a list of words,
     with each word having its index in the original text provided.
     the function also considers language-specific rules for word splitting.
-    
+
     Parameters:
     text (string): the string to be split.
     lang (string): the language code (to handle specific rules).
 
     Returns:
-    list of tuples: each tuple contains the word itself 
+    list of tuples: each tuple contains the word itself
                     and its start index in the original text.
     """
 
@@ -44,7 +45,7 @@ def split_words_with_indices(text: str, lang: str):
     for match in matches:
         word = match.group()
         global_index = match.start()
-        
+
         # the "word" could contain punctuation,
         # so the program runs along until it hits a letter,
         # which will be the local starting index.

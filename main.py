@@ -1,6 +1,7 @@
 import long_s
 from test_conversion_func import *
 
+
 def main():
     sentences = [
         ("en", "The discussion was surprisingly insightful."),
@@ -14,7 +15,8 @@ def main():
         result = long_s.convert(sentence, lang=lang)
         print(result)
 
-    test_conversion_func(lang="de")
+    test_conversion_func(lang=None)
+
 
 if __name__ == "__main__":
     main()
