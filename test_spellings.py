@@ -1316,7 +1316,7 @@ TEST_SPELLINGS = {
         "Schöſſe",
         "Schwulſt",
         "Sechſtel",
-        "Selbſstbewuſſtſein",
+        "Selbſtbewuſſtſein",
         "Semeſter",
         "Seſſel",
         "Seſſion",

@@ -485,6 +485,7 @@ OMNIPRESENT_PATTERNS = [
     "sſattel",
     "sſplitt",
     "sſyſtem",
+    "sunfall",
     "tauſalz",
     "vaneſſa",
     "äschenſ",
@@ -548,7 +549,8 @@ OMNIPRESENT_PATTERNS = [
     "sethik",
     "seſſig",
     "sideal",
-    "skrank",
+    #"skrank",
+    #"skrei",
     "sküſte",
     "stheor",
     "stücks",
@@ -1514,6 +1516,8 @@ END_PATTERNS = {
         "ſien",
     ],
     "es": [
+        "sſchluſſes",
+        "ſchluſſes",
         "ſiſtiſches",
         "iſtiſches",
         "ſerweiſes",
@@ -1625,6 +1629,8 @@ END_PATTERNS = {
         "ſere",
     ],
     "se": [
+        "sſchluſſe",
+        "ſchluſſe",
         "ſſerweiſe",
         "ſerweiſe",
         "ſſeuſe",
@@ -1809,6 +1815,7 @@ END_PATTERNS = {
     ],
     "p": [
         "schip",
+        "ſkop",
     ],
     "r": [
         "ſiſtiſcher",
@@ -2832,6 +2839,7 @@ START_PATTERNS = {
 
 # Step 5.
 POSTPROCESS_PATTERNS = [
+    "ſchluſs",
     "ſkop",
     "sko",
 ]
@@ -2843,6 +2851,7 @@ FORCED_OVERWRITES = [
     "gasbeſt",
     "asbeſtſ",
     "asbeſt",
+    #
     # sh
     "daſhboard",
     "faſhionſ",
@@ -2864,6 +2873,13 @@ FORCED_OVERWRITES = [
     "puſh",
     "waſh",
     "ſhow",
+    #
+    # sk
+    "epiſkopat",
+    "ſkribier",
+    "obſkur",
+    "ſkript",
+    #
     # sl
     "ſlawiſch",
     "moſlem",
@@ -2872,19 +2888,23 @@ FORCED_OVERWRITES = [
     "ſlogan",
     "iſlam",
     "ſlip",
+    #
     # sm
     "ſommerſmog",
     "ſmalltalk",
     "ſmoothie",
     "ſmile",
     "ſmoke",
+    #
     # sn
     "kulturſnob",
     "filmſnob",
     "verſnopt",
+    #
     # sp
     "aſphaltſ",
     "aſphalt",
+    #
     # sr
     "siſrael",
     "iſrael",
