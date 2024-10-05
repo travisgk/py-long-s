@@ -112,7 +112,7 @@ def convert_german_word(word: str):
                     print(f"\t{word}")
                 return word
 
-    blueprint_word = clean_word # used for forced replacements later.
+    blueprint_word = clean_word  # used for forced replacements later.
     clean_word = clean_word[:-1].replace("s", UNKNOWN_S) + clean_word[-1]
 
     if clean_word.startswith(UNKNOWN_S):
@@ -136,9 +136,9 @@ def convert_german_word(word: str):
     # determines which occurrences of S can't be explicitly decided as
     # being a short S (and thereby which ones must definitely be a short S).
     if FORCE_SHORT_S_BEFORE_Z:
-        pattern = f"{UNKNOWN_S}(?=[aäceioöpſ{UNKNOWN_S}tuüy])" # removed K for DEBUG
+        pattern = f"{UNKNOWN_S}(?=[aäceioöpſ{UNKNOWN_S}tuüy])"  # removed K for DEBUG
     else:
-        pattern = f"{UNKNOWN_S}(?=[aäceioöpſ{UNKNOWN_S}tuüyz])" # removed K for DEBUG
+        pattern = f"{UNKNOWN_S}(?=[aäceioöpſ{UNKNOWN_S}tuüyz])"  # removed K for DEBUG
     uncertain_indices = [m.start() for m in re.finditer(pattern, clean_word)]
 
     # fills in any determined short S from the pattern.

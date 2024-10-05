@@ -1629,7 +1629,6 @@ TEST_SPELLINGS = {
         "zwitſchern",
         "Zypreſſe",
     ],
-    
     # Spanish
     # [ ] force short S before accented O
     "es": [
