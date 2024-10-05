@@ -92,13 +92,17 @@ def convert_german_word(word: str):
 
     backup_word = word
 
+    # 0) The program has the conversions of some commonly-used
+    #    words explicitly written in memory, so if the word is one of those,
+    #    the function will return that conversion immediately.
     if PRINT_DEBUG_TEXT:
         print(f"Begins) {word}")
         print(f"Step 0)")
 
     clean_word = strip_consonant_accents(word.lower())
-    exact_matches_list = EXACT_MATCHES.get(clean_word[0])
 
+    # matches list are indexed by the starting letter.
+    exact_matches_list = EXACT_MATCHES.get(clean_word[0])
     if exact_matches_list is not None:
         for term in exact_matches_list:
             no_long_s = term.replace("ſ", "s")
@@ -108,7 +112,7 @@ def convert_german_word(word: str):
                     print(f"\t{word}")
                 return word
 
-    blueprint_word = clean_word  # used for forced replacements later.
+    blueprint_word = clean_word # used for forced replacements later.
     clean_word = clean_word[:-1].replace("s", UNKNOWN_S) + clean_word[-1]
 
     if clean_word.startswith(UNKNOWN_S):
@@ -123,6 +127,7 @@ def convert_german_word(word: str):
     clean_word = _fill_in_double_s(clean_word)
 
     if UNKNOWN_S not in clean_word:
+        # the word has been fully solved, so it's returned.
         word = transfer_long_S(clean_word, word)
         return word
 
@@ -155,8 +160,9 @@ def convert_german_word(word: str):
     if PRINT_DEBUG_TEXT:
         print(f"Step 2)")
 
+    unknown_s_indices = [i for i, c in enumerate(clean_word) if c == UNKNOWN_S]
     for term in OMNIPRESENT_PATTERNS:
-        if UNKNOWN_S not in clean_word:
+        if UNKNOWN_S not in (clean_word[i] for i in unknown_s_indices):
             break  # no more unknowns.
 
         clean_word, made_replacement = _crossword_replace(clean_word, term)
@@ -210,11 +216,7 @@ def convert_german_word(word: str):
     starts_list = START_PATTERNS.get(clean_word[0])
     if starts_list is not None:
         for term in starts_list:
-            if UNKNOWN_S not in clean_word:
-                break  # no more unknowns.
-
             if len(term) <= len(clean_word):
-
                 clean_snippet = clean_word[: len(term)]
                 clean_snippet, made_replacement = _crossword_replace(
                     clean_snippet, term
@@ -231,7 +233,7 @@ def convert_german_word(word: str):
 
     # 5) This step runs postprocess replacements with the crossword search.
     for term in POSTPROCESS_PATTERNS:
-        if UNKNOWN_S not in clean_word:
+        if UNKNOWN_S not in (clean_word[i] for i in unknown_s_indices):
             break  # no more unknowns.
 
         clean_word, made_replacement = _crossword_replace(clean_word, term)
