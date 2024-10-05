@@ -76,11 +76,14 @@ def _blueprint_replace(text: str, blueprint_text: str, spelling_pattern: str):
 
 def _fill_in_double_s(word: str):
     """Returns the word with a basic pattern with double S filled in."""
-    # print(f"DEBUG: before: {word}")
     word = word.replace(f"{UNKNOWN_S}s", "ſs")
     word = word.replace(f"s{UNKNOWN_S}", "sſ")
-    # print(f"DEBUG: after:  {word}")
     return word
+
+
+def _find_blank_indices(word):
+    """Returns a list of indices where any UNKNOWN_S remains in the word."""
+    return [i for i, c in enumerate(word) if c == UNKNOWN_S]
 
 
 def convert_german_word(word: str):
@@ -112,12 +115,14 @@ def convert_german_word(word: str):
                     print(f"\t{word}")
                 return word
 
-    blueprint_word = clean_word  # used for forced replacements later.
+    blueprint_word = clean_word  # used for indexing and forced replacements.
     clean_word = clean_word[:-1].replace("s", UNKNOWN_S) + clean_word[-1]
 
+    # S as the first letter in a word is always long.
     if clean_word.startswith(UNKNOWN_S):
         clean_word = "ſ" + clean_word[1:]
 
+    # the penultimate S is almost always long.
     if clean_word[-2] == UNKNOWN_S:
         if clean_word[-1] != "k":
             clean_word = clean_word[:-2] + "ſ" + clean_word[-1:]
@@ -125,8 +130,8 @@ def convert_german_word(word: str):
             clean_word = clean_word[:-2] + "s" + clean_word[-1:]
 
     clean_word = _fill_in_double_s(clean_word)
-
-    if UNKNOWN_S not in clean_word:
+    remaining_blank_indices = _find_blank_indices(clean_word)
+    if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
         # the word has been fully solved, so it's returned.
         word = transfer_long_S(clean_word, word)
         return word
@@ -154,39 +159,22 @@ def convert_german_word(word: str):
     if PRINT_DEBUG_TEXT:
         print(f"Step 1)\t{clean_word}")
 
-    # 2) This step uses the crossword replace function to try to solve
-    #    any ambiguous S. A dictionary of spelling patterns that can occur
-    #    anywhere in the word are used to try to further solve the spelling.
-    if PRINT_DEBUG_TEXT:
-        print(f"Step 2)")
-
-    unknown_s_indices = [i for i, c in enumerate(clean_word) if c == UNKNOWN_S]
-    for term in OMNIPRESENT_PATTERNS:
-        if UNKNOWN_S not in (clean_word[i] for i in unknown_s_indices):
-            break  # no more unknowns.
-
-        clean_word, made_replacement = _crossword_replace(clean_word, term)
-        if made_replacement:
-            if PRINT_DEBUG_TEXT:
-                print(f"\tOMNIPRESENT PATTERN: {term}")
-            clean_word = _fill_in_double_s(clean_word)
-
-    if PRINT_DEBUG_TEXT:
-        print(f"\t{clean_word}")
-
-    # 3) This step uses the blueprint replace function to try to solve
+    # 2) This step uses the blueprint replace function to try to solve
     #    any ambiguous S, but only for patterns
     #    that occur at the end of words.
     if PRINT_DEBUG_TEXT:
-        print(f"Step 3)")
+        print(f"Step 2)")
 
     ends_list = None
-    if len(clean_word) >= 3:
-        ends_list = END_PATTERNS.get(clean_word[-3:])
-    if ends_list is None and len(clean_word) >= 2:
-        ends_list = END_PATTERNS.get(clean_word[-2:])
-    if ends_list is None and len(clean_word) >= 1:
-        ends_list = END_PATTERNS.get(clean_word[-1])
+    if len(blueprint_word) >= 3:
+        index = blueprint_word[-3:]
+        ends_list = END_PATTERNS.get(index)
+    if ends_list is None and len(blueprint_word) >= 2:
+        index = blueprint_word[-2:]
+        ends_list = END_PATTERNS.get(index)
+    if ends_list is None and len(blueprint_word) >= 1:
+        index = blueprint_word[-1]
+        ends_list = END_PATTERNS.get(index)
 
     if ends_list is not None:
         for term in ends_list:
@@ -207,14 +195,37 @@ def convert_german_word(word: str):
     if PRINT_DEBUG_TEXT:
         print(f"\t{clean_word}")
 
+    # 3) This step uses the crossword replace function to try to solve
+    #    any ambiguous S. A dictionary of spelling patterns that can occur
+    #    anywhere in the word are used to try to further solve the spelling.
+    if PRINT_DEBUG_TEXT:
+        print(f"Step 3)")
+
+    remaining_blank_indices = _find_blank_indices(clean_word)
+    for term in OMNIPRESENT_PATTERNS:
+        if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
+            break  # no more unknowns remain.
+
+        clean_word, made_replacement = _crossword_replace(clean_word, term)
+        if made_replacement:
+            if PRINT_DEBUG_TEXT:
+                print(f"\tOMNIPRESENT PATTERN: {term}")
+            clean_word = _fill_in_double_s(clean_word)
+            remaining_blank_indices = _find_blank_indices(clean_word)
+
+    if PRINT_DEBUG_TEXT:
+        print(f"\t{clean_word}")
+
     # 4) This step uses the crossword replace function to try to solve
     #    any ambiguous S, but only for patterns
     #    that occur at the beginning of words.
     if PRINT_DEBUG_TEXT:
         print(f"Step 4)")
 
-    starts_list = START_PATTERNS.get(clean_word[0])
-    if starts_list is not None:
+    starts_list = START_PATTERNS.get(blueprint_word[0])
+    if starts_list is not None and UNKNOWN_S in (
+        clean_word[i] for i in remaining_blank_indices
+    ):
         for term in starts_list:
             if len(term) <= len(clean_word):
                 clean_snippet = clean_word[: len(term)]
@@ -233,7 +244,7 @@ def convert_german_word(word: str):
 
     # 5) This step runs postprocess replacements with the crossword search.
     for term in POSTPROCESS_PATTERNS:
-        if UNKNOWN_S not in (clean_word[i] for i in unknown_s_indices):
+        if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
             break  # no more unknowns.
 
         clean_word, made_replacement = _crossword_replace(clean_word, term)
@@ -257,7 +268,6 @@ def convert_german_word(word: str):
         print(f"Step 6) {clean_word}")
 
     # Result) The word is cleaned up and returned.
-
     if DEFAULT_UNKNOWNS_TO_LONG_S:
         clean_word = clean_word.replace(UNKNOWN_S, "ſ")
     word = transfer_long_S(clean_word, word)
