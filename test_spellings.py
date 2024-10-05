@@ -518,6 +518,7 @@ TEST_SPELLINGS = {
         "Fronfeſte",
         "früheſtens",
         "Frühſtück",
+        "frühſtücken",
         "Fußtapſe",
         "Fürſt",
         "Fürſtentum",
