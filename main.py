@@ -4,14 +4,8 @@ from test_conversion_func import *
 
 
 def main():
-    start_time = time.time()
-    print("\n", end="")
-
-    # tests every supported language.
-    test_conversion_func(lang=None)
-
     # prints out sample sentences for each language.
-    print("\n")
+    print("\n", end="")
     sentences = [
         ("en", "The discussion was surprisingly insightful."),
         ("fr", "La discussion était étonnamment perspicace."),
@@ -24,6 +18,10 @@ def main():
         result = long_s.convert(sentence, lang=lang)
         print(result)
 
+    # tests every supported language.
+    start_time = time.time()
+    print("\n", end="")
+    test_conversion_func(lang=None)
     elapsed = time.time() - start_time
     print(f"\n{elapsed:.2f} seconds")
 

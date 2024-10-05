@@ -12,7 +12,9 @@ Version: 1.0
 License: MIT License
 """
 
+import multiprocessing
 import re
+from functools import partial
 from ._split_words import *
 from ._simple_conversions import *
 from ._german_conversion import convert_german_word
@@ -33,6 +35,10 @@ def get_conversion_func(lang: str):
     return None
 
 
+def _process_chunk(chunk, convert_func, lang: str = "de"):
+    return {key: convert_func(value) for key, value in chunk.items()}
+
+
 def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
     """
     Places the long s (ſ) in a sentence and returns it.
@@ -45,24 +51,68 @@ def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
     Returns:
     str: text with the long s (ſ) placed.
     """
+    CHUNK_SIZE = 30
+    MULTIPROCESS_THRESHOLD = 100
+
     convert_func = get_conversion_func(lang)
 
     if convert_func is None:
         print(f'language "{lang}" not found.' "the options are: en, es, fr, it, de.")
         return text
 
-    # converts each word individually.
-    words = split_words_with_indices(text, lang)
-    for old_word, start_index in words:
-        new_word = convert_func(old_word)
+    words_with_indices = split_words_with_indices(text, lang)
 
-        if old_word == new_word:
-            continue  # no replacements were made.
+    if len(words_with_indices) > MULTIPROCESS_THRESHOLD:
+        # uses multiprocessing to convert massive amounts of words.
+        non_words = {}
+        next_new_index = 0
+        for old_word, start_index in words_with_indices:
+            if next_new_index != start_index:
+                non_words[next_new_index] = text[next_new_index:start_index]
+                next_new_index = start_index
+            next_new_index = start_index + len(old_word)
 
-        # overwrite the original occurrences of S.
-        for j in range(len(new_word)):
-            clip = start_index + j
-            if text[clip] == "s":
-                text = text[:clip] + new_word[j] + text[clip + 1 :]
+        if next_new_index < len(text):
+            non_words[next_new_index] = text[next_new_index:]
 
-    return text
+        # breaks all the words to be converted into dictionary chunks.
+        chunks = []
+        for i in range(0, len(words_with_indices), CHUNK_SIZE):
+            chunks.append({})
+            for j in range(i, min(len(words_with_indices), i + CHUNK_SIZE)):
+                old_word, start_index = words_with_indices[j]
+                chunks[-1][start_index] = old_word
+        last_used_index = (len(words_with_indices) // CHUNK_SIZE) * CHUNK_SIZE
+
+        # converts every chunk using multiprocessing.
+        process_func = partial(_process_chunk, convert_func, lang)
+        with multiprocessing.Pool() as pool:
+            results = pool.map(process_func, chunks)
+
+        # combines all the results.
+        combined_result = {k: v for r in results for k, v in r.items()}
+        for key, value in non_words.items():
+            combined_result[key] = value
+
+        mapped_list = sorted(combined_result.items())
+        text = "".join(substr for _, substr in mapped_list)
+
+        return text
+
+    else:
+        # uses one thread to directly convert some words.
+        # converts each word individually.
+        words = split_words_with_indices(text, lang)
+        for old_word, start_index in words:
+            new_word = convert_func(old_word)
+
+            if old_word == new_word:
+                continue  # no replacements were made.
+
+            # overwrite the original occurrences of S.
+            for j in range(len(new_word)):
+                clip = start_index + j
+                if text[clip] == "s":
+                    text = text[:clip] + new_word[j] + text[clip + 1 :]
+
+        return text
