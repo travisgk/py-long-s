@@ -58,8 +58,8 @@ def _crossword_replace(text: str, spelling_pattern: str):
 
 def _blueprint_replace(text: str, blueprint_text: str, spelling_pattern: str):
     """
-    Returns text with a spelling pattern enforced and if any replacements were made.
-
+    Returns text with a spelling pattern enforced
+    and if any replacements were made.
     """
     pattern_without_long_s = spelling_pattern.replace("ſ", "s")
     matched_indices = [
