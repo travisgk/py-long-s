@@ -123,7 +123,7 @@ def convert_german_word(word: str):
         clean_word = "ſ" + clean_word[1:]
 
     # the penultimate S is almost always long.
-    if clean_word[-2] == UNKNOWN_S:
+    if len(clean_word) > 1 and clean_word[-2] == UNKNOWN_S:
         if clean_word[-1] != "k":
             clean_word = clean_word[:-2] + "ſ" + clean_word[-1:]
         else:

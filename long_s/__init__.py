@@ -13,6 +13,7 @@ License: MIT License
 """
 
 import multiprocessing
+import os
 import re
 from functools import partial
 from ._split_words import *
@@ -36,7 +37,40 @@ def get_conversion_func(lang: str):
 
 
 def _process_chunk(chunk, convert_func, lang: str = "de"):
+    """
+    Returns a dict of every word contained in the given chunk after being converted.
+    """
     return {key: convert_func(value) for key, value in chunk.items()}
+
+
+def convert_text_file(
+    in_file_path: str,
+    out_file_path: str = None,
+    lang: str = "en",
+    keep_unknown_s: bool = False,
+):
+    """
+    Loads a text file, converts all the text to use the long S,
+    then saves it to an output text file.
+
+    Parameters:
+    in_file_path (string): path of the source text file.
+    out_file_path (string): path of the destination text file.
+    lang (string): the language code for the text.
+    keep_unknown_s (bool): if True, ambiguous cases of S
+                           will remain explicitly marked.
+    """
+    if not os.path.isfile(in_file_path):
+        return
+
+    with open(in_file_path, "r", encoding="utf-8") as input_file:
+        content = input_file.read()
+        results = convert(content, lang, keep_unknown_s)
+
+    if out_file_path is None:
+        out_file_path = in_file_path[:-4] + "-long-s.txt"
+    with open(out_file_path, "w", encoding="utf-8") as output_file:
+        output_file.write(results)
 
 
 def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
@@ -46,18 +80,19 @@ def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
     Parameters:
     text (str): the string to convert into archaeic spelling.
     lang (str): the language code for <text>. "en", "es", "fr", "it", or "de".
-    keep_unknown_s (bool): if True, ambiguous cases of S will be shown as X.
+    keep_unknown_s (bool): if True, ambiguous cases of S
+                           will remain explicitly marked.
 
     Returns:
     str: text with the long s (ſ) placed.
     """
     CHUNK_SIZE = 30
-    MULTIPROCESS_THRESHOLD = 100
+    MULTIPROCESS_THRESHOLD = 100  # wordcount that triggers multiprocessing.
 
     convert_func = get_conversion_func(lang)
 
     if convert_func is None:
-        print(f'language "{lang}" not found.' "the options are: en, es, fr, it, de.")
+        print(f'language "{lang}" not found.' "the options are: en, fr, de, es, it.")
         return text
 
     words_with_indices = split_words_with_indices(text, lang)
@@ -85,7 +120,7 @@ def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
         last_used_index = (len(words_with_indices) // CHUNK_SIZE) * CHUNK_SIZE
 
         # converts every chunk using multiprocessing.
-        process_func = partial(_process_chunk, convert_func, lang)
+        process_func = partial(_process_chunk, convert_func=convert_func, lang=lang)
         with multiprocessing.Pool() as pool:
             results = pool.map(process_func, chunks)
 

@@ -2878,6 +2878,7 @@ POSTPROCESS_PATTERNS = [
     "ſchluſs",
     "ſkop",
     "sko",
+    "szu",
 ]
 
 
@@ -2893,8 +2894,12 @@ FORCED_OVERWRITES = [
     "faſhionſ",
     "faſhion",
     "ſhampoo",
+    "nataſha",
     "finiſh",
     "flaſhſ",
+    "joſhua",
+    "aſhley",
+    "aſhlee",
     "sſhowſ",
     "craſh",
     "flaſh",
@@ -2905,6 +2910,7 @@ FORCED_OVERWRITES = [
     "ſmaſh",
     "caſh",
     "haſh",
+    "joſh",
     "moſh",
     "puſh",
     "waſh",
