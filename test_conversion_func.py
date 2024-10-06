@@ -49,9 +49,10 @@ def test_conversion_func(lang: str = None):
             mismatches.append((input_text, actual_output, expected_output))
 
     # prints the results to the user.
-    num_mismatches = len(mismatches)
     num_tests = len(spellings)
     lang_name = _LANG_NAMES[lang]
+
+    num_mismatches = len(mismatches)
     if num_mismatches == 0:
         # notifies user of success if no errors arose.
         print(f"All {num_tests} tests were successful for {lang_name}.")

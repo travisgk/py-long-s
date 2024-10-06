@@ -1,7 +1,4 @@
 """
-long-s
-# pip install unidecode
-
 Filename: __init__.py
 Description: long-s is a tool that takes modern text and 
              inserts the archaic letter of the long S (ſ) where it fits.

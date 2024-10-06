@@ -1,7 +1,16 @@
-# these are words from the supported languages
-# that are sourced from historical materials,
-# so they are used to verify that the conversion functions
-# are working properly.
+"""
+Filename: test_spellings.py
+Description: This file contains words from supported languages
+             that are sourced from historical materials,
+             so they are used to verify that the conversion functions
+             are all working properly.
+
+Author: TravisGK
+Version: 1.0
+
+License: MIT License
+"""
+
 TEST_SPELLINGS = {
     # English
     "en": [
@@ -3827,7 +3836,6 @@ TEST_SPELLINGS = {
         "Zypreſſe",
     ],
     # Spanish
-    # [ ] force short S before accented O
     "es": [
         "illuſtriſsimos",
         "confeſſores",
