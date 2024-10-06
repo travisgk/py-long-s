@@ -874,6 +874,7 @@ END_PATTERNS = {
         "ſſoide",
         "ſſteme",
         "ſtrafe",
+        "chſle",
         "iſche",
         "ſoide",
         "ſteme",
@@ -2945,6 +2946,7 @@ FORCED_OVERWRITES = [
     "muſlim",
     "siſlam",
     "ſlogan",
+    "hanſl",
     "iſlam",
     "ſlip",
     #
