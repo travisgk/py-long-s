@@ -1568,6 +1568,7 @@ TEST_SPELLINGS = {
         "Geſchwader",
         "geſchwind",
         "Geſchwindigkeit",
+        "Geſchwindigkeitsbegrenzung",
         "Geſchwulſt",
         "Geſchwür",
         "geſehen",

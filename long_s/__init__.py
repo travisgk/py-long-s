@@ -41,8 +41,8 @@ def _process_chunk(chunk, convert_func, lang: str = "de"):
 
 
 def convert_text_file(
-    in_file_path: str,
-    out_file_path: str = None,
+    src_path: str,
+    dst_path: str = None,
     lang: str = "en",
     keep_unknown_s: bool = False,
 ):
@@ -51,22 +51,22 @@ def convert_text_file(
     then saves it to an output text file.
 
     Parameters:
-    in_file_path (string): path of the source text file.
-    out_file_path (string): path of the destination text file.
+    src_path (string): path of the source text file.
+    dst_path (string): path of the destination text file.
     lang (string): the language code for the text.
     keep_unknown_s (bool): if True, ambiguous cases of S
                            will remain explicitly marked.
     """
-    if not os.path.isfile(in_file_path):
+    if not os.path.isfile(src_path):
         return
 
-    with open(in_file_path, "r", encoding="utf-8") as input_file:
+    with open(src_path, "r", encoding="utf-8") as input_file:
         content = input_file.read()
         results = convert(content, lang, keep_unknown_s)
 
-    if out_file_path is None:
-        out_file_path = in_file_path[:-4] + "-long-s.txt"
-    with open(out_file_path, "w", encoding="utf-8") as output_file:
+    if dst_path is None:
+        dst_path = src_path[:-4] + "-long-s.txt"
+    with open(dst_path, "w", encoding="utf-8") as output_file:
         output_file.write(results)
 
 
@@ -138,13 +138,9 @@ def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
         for old_word, start_index in words:
             new_word = convert_func(old_word)
 
-            if old_word == new_word:
-                continue  # no replacements were made.
-
-            # overwrite the original occurrences of S.
-            for j in range(len(new_word)):
-                clip = start_index + j
-                if text[clip] == "s":
-                    text = text[:clip] + new_word[j] + text[clip + 1 :]
+            if old_word != new_word:
+                text = (
+                    text[:start_index] + new_word + text[start_index + len(new_word) :]
+                )
 
         return text
