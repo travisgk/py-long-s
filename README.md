@@ -1,4 +1,4 @@
-# long-s
+# py-long-s
 This Python script converts text to use the archaic long S letter ( ſ ) in its spellings.
 <br>
 English, French, German, Spanish, and Italian are supported.
