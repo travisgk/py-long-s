@@ -3,7 +3,7 @@ This Python script converts text to use the archaic long S letter ( ſ ) in its 
 <br>
 English, French, German, Spanish, and Italian are supported.
 
-There's also a [JavaScript version](https://github.com/travisgk/long-s-converter) available.
+There's also a [JavaScript version](https://github.com/travisgk/long-s-converter) available which can be used online.
 <br>
 
 ### Requirements
