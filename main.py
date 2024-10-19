@@ -25,10 +25,5 @@ def main():
     elapsed = time.time() - start_time
     print(f"\n{elapsed:.2f} seconds")
 
-    long_s.convert_text_file("smut.txt", lang="de")
-
-    long_s.save_clean_list_file("myfile.js", version_str="1.0.1")
-
-
 if __name__ == "__main__":
     main()
