@@ -238,6 +238,8 @@ TEST_SPELLINGS = {
         "Anweſenheit",
         "anzuſehen",
         "apathiſch",
+        "aſbeſt",
+        "Arkanſaskönigstyrann",
         "Apfelſine",
         "apodiktiſch",
         "Apoſtel",
@@ -1481,6 +1483,7 @@ TEST_SPELLINGS = {
         "Gegenſtände",
         "gegoſſen",
         "Gehaltserhöhung",
+        "Gebrauchstauglichkeitsſkript",
         "gehäſſig",
         "Geheimdienſt",
         "Geiſel",
@@ -3902,6 +3905,8 @@ TEST_SPELLINGS = {
         "Zwiſchenräumen",
         "zwitſchern",
         "Zypreſſe",
+        "Kabelausgangsüberwurfmutter",
+        "Artiſchockenſpitzmäuschen",
     ],
     # Spanish
     "es": [
