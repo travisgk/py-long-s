@@ -137,6 +137,16 @@ def convert_german_word(word: str):
     blueprint_word = clean_word
     clean_word = clean_word[:-1].replace("s", UNKNOWN_S) + clean_word[-1]
 
+    # enforces a few exceptional spellings.
+    for term in FORCED_OVERWRITES:
+        if len(term) <= len(clean_word):
+            clean_word, made_replacement = _blueprint_replace(
+                clean_word, blueprint_word, term
+            )
+            if made_replacement:
+                clean_word = _fill_in_double_s(clean_word)
+                # can't break here b/c search is omnipresent.
+  
     if clean_word.startswith(UNKNOWN_S):
         # S as the first letter in a word is always long.
         clean_word = "ſ" + clean_word[1:]
@@ -226,31 +236,7 @@ def convert_german_word(word: str):
         print(f"\t{clean_word}")
 
     """
-    Step 4) 
-    ---
-    This step enforces a few exceptional spellings.
-
-    """
-    for term in FORCED_OVERWRITES:
-        if len(term) <= len(clean_word):
-            clean_word, made_replacement = _blueprint_replace(
-                clean_word, blueprint_word, term
-            )
-            if made_replacement:
-                clean_word = _fill_in_double_s(clean_word)
-                # can't break here b/c search is omnipresent.
-
-    if PRINT_DEBUG_TEXT:
-        print(f"Step 4)\t{clean_word}")
-
-    remaining_blank_indices = _find_blank_indices(clean_word)
-    if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
-        # the word has been fully solved, so it's returned.
-        word = transfer_long_S(clean_word, word)
-        return word
-
-    """
-    Step 5)
+    Step 4)
     ---
     This step uses the crossword replace function to try to solve
     any ambiguous S. A dictionary of spelling patterns that can occur
@@ -263,22 +249,8 @@ def convert_german_word(word: str):
     # builds a list of replacement patterns
     # based on what letters the word is composed of.
     isolated_keys = [
-        "ir",
-        "nt",
-        "er",
-        "et",
-        "en",
-        "at",
-        "r",
-        "ea",
-        "e",
-        "n",
-        "i",
-        "a",
-        "t",
-        "h",
-        "u",
-        "o",
+        "ir", "nt", "er", "et", "en", "at", "r", "ea",
+        "e", "n", "i", "a", "t", "h", "u", "o",
     ]
     word_keys = ["remaining"]
     for key in isolated_keys:
@@ -309,7 +281,7 @@ def convert_german_word(word: str):
         print(f"\t{clean_word}")
 
     """
-    Step 6)
+    Step 5)
     ---
     This step uses the crossword replace function to try to solve
     any ambiguous S, but only for patterns
@@ -340,7 +312,7 @@ def convert_german_word(word: str):
         print(f"\t{clean_word}")
 
     """
-    Step 7)
+    Step 6)
     ---
     This step runs postprocess replacements with the crossword search.
 
