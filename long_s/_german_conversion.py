@@ -244,7 +244,7 @@ def convert_german_word(word: str):
 
     """
     if PRINT_DEBUG_TEXT:
-        print(f"Step 5)")
+        print(f"Step 4)")
 
     # builds a list of replacement patterns
     # based on what letters the word is composed of.
@@ -289,7 +289,7 @@ def convert_german_word(word: str):
 
     """
     if PRINT_DEBUG_TEXT:
-        print(f"Step 6)")
+        print(f"Step 5)")
 
     starts_list = START_PATTERNS.get(blueprint_word[0])
     if starts_list is not None and UNKNOWN_S in (
@@ -326,7 +326,7 @@ def convert_german_word(word: str):
             clean_word = _fill_in_double_s(clean_word)
 
     if PRINT_DEBUG_TEXT:
-        print(f"Step 7) {clean_word}")
+        print(f"Step 6) {clean_word}")
 
     """
     Result) 
