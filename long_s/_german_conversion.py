@@ -146,7 +146,7 @@ def convert_german_word(word: str):
             if made_replacement:
                 clean_word = _fill_in_double_s(clean_word)
                 # can't break here b/c search is omnipresent.
-  
+
     if clean_word.startswith(UNKNOWN_S):
         # S as the first letter in a word is always long.
         clean_word = "ſ" + clean_word[1:]
@@ -249,8 +249,22 @@ def convert_german_word(word: str):
     # builds a list of replacement patterns
     # based on what letters the word is composed of.
     isolated_keys = [
-        "ir", "nt", "er", "et", "en", "at", "r", "ea",
-        "e", "n", "i", "a", "t", "h", "u", "o",
+        "ir",
+        "nt",
+        "er",
+        "et",
+        "en",
+        "at",
+        "r",
+        "ea",
+        "e",
+        "n",
+        "i",
+        "a",
+        "t",
+        "h",
+        "u",
+        "o",
     ]
     word_keys = ["remaining"]
     for key in isolated_keys:
@@ -259,10 +273,10 @@ def convert_german_word(word: str):
 
     s_count = min(2, blueprint_word.count("s"))
     omnipresent_patterns = []
-    for word_key in isolated_keys:
-        omnipresent_patterns += OMNIPRESENT_PATTERNS[word_key][s_count]
+    for word_key in word_keys:
+        omnipresent_patterns += OMNIPRESENT_PATTERNS[word_key][1]
         if s_count == 2:
-            omnipresent_patterns += OMNIPRESENT_PATTERNS[word_key][1]
+            omnipresent_patterns += OMNIPRESENT_PATTERNS[word_key][2]
 
     omnipresent_patterns = sorted(omnipresent_patterns, key=lambda x: -len(x))
 
@@ -279,6 +293,11 @@ def convert_german_word(word: str):
 
     if PRINT_DEBUG_TEXT:
         print(f"\t{clean_word}")
+
+    if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
+        # the word has been fully solved, so it's returned.
+        word = transfer_long_S(clean_word, word)
+        return word
 
     """
     Step 5)

@@ -2078,6 +2078,7 @@ TEST_SPELLINGS = {
         "Kautſchuk",
         "Kavalleriſt",
         "Käſe",
+        "Glückspilz",
         "keinesfalls",
         "keineswegs",
         "Kenntniſſe",

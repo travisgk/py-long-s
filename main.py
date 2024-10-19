@@ -25,5 +25,6 @@ def main():
     elapsed = time.time() - start_time
     print(f"\n{elapsed:.2f} seconds")
 
+
 if __name__ == "__main__":
     main()

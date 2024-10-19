@@ -4,7 +4,7 @@ Description: This contains spelling patterns of the long S
      in the German language. These are used to fill in uncertainties.
 
 Author: TravisGK
-Version: 1.0.1
+Version: 1.0.2
 
 License: MIT License
 """
@@ -562,6 +562,9 @@ LONG_S_NAMES = {
 
 # a few exceptional spellings.
 FORCED_OVERWRITES = [
+    # misc.
+    "reſſort",
+    #
     # geographic locations
     "miſſouri",
     "miſſiſſippi",
@@ -625,6 +628,7 @@ FORCED_OVERWRITES = [
     "muſlim",
     "siſlam",
     "ſlogan",
+    "ſlowak",
     "iſlam",
     "ſlip",
     #
@@ -1486,6 +1490,7 @@ END_PATTERNS = {
         "ſſtet",
         "ſtigt",
         "samt",
+        "sort",
         "ſant",
         "ſcht",
         "ſelt",
@@ -1518,17 +1523,19 @@ anywhere in the word are used to try to further solve the spelling.
 
 """
 OMNIPRESENT_PATTERNS = {
-    "ir": {
+    "ir": {  # has an "i" and an "r".
         1: [
             "arbeitsoverall",
             "rechtſtreich",
             "austreibung",
             "disharmonie",
             "diſtinguier",
+            "fahrtſignal",
             "preiſelbeer",
             "betreibſam",
             "konfiszier",
             "radieschen",
+            "ſchreckens",
             "ſorgfältig",
             "arbeitſam",
             "ausarbeit",
@@ -1536,6 +1543,9 @@ OMNIPRESENT_PATTERNS = {
             "disponier",
             "seinkaufs",
             "kreischef",
+            "strainier",
+            "straining",
+            "trainings",
             "austrieb",
             "austritt",
             "betriebs",
@@ -1553,6 +1563,7 @@ OMNIPRESENT_PATTERNS = {
             "diskret",
             "fertigſ",
             "förmigſ",
+            "gebirgs",
             "kratieſ",
             "kriegſt",
             "metrieſ",
@@ -1602,15 +1613,20 @@ OMNIPRESENT_PATTERNS = {
             "sſir",
         ],
     },
-    "nt": {
+    "nt": {  # has an "n" and "t".
         1: [
             "bertoldsbrunnen",
             "desungeachtet",
             "kentumſprache",
+            "fahrtſtrecke",
             "stätigkeiten",
+            "aufenthalts",
             "diſtinktion",
+            "fahrtſtunde",
             "kaſtagnette",
             "nikolaustag",
+            "transaction",
+            "fahrtſpiel",
             "kartenſlot",
             "diſtichon",
             "einesteil",
@@ -1628,18 +1644,21 @@ OMNIPRESENT_PATTERNS = {
             "ſediment",
             "townsend",
             "zentrums",
+            "zugſchuh",
+            "zugſtoff",
             "anſteig",
             "anſtieg",
             "diskant",
             "diſtanz",
             "fenſter",
             "santeil",
+            "zugſeil",
+            "fahrts",
             "ſition",
             "ſtehen",
             "transp",
             "naust",
             "ſtand",
-            "ſtroh",
             "tions",
             "ſitn",
             "ſtn",
@@ -1648,11 +1667,13 @@ OMNIPRESENT_PATTERNS = {
             "thalaſſämien",
             "baſſetrüden",
             "dispoſition",
+            "fahrtſpeſen",
             "gottesſöhne",
             "stransports",
             "sentſcheid",
             "stransport",
             "ſcreenſhot",
+            "ſuchtſtoff",
             "transports",
             "diſſident",
             "seinſteig",
@@ -1677,9 +1698,10 @@ OMNIPRESENT_PATTERNS = {
             "ſteinſ",
         ],
     },
-    "er": {
+    "er": {  # has an "e" and an "r".
         1: [
             "charakterſlot",
+            "fahrtſtraße",
             "rechtſprech",
             "rechtſtarte",
             "rechtſtrebe",
@@ -1698,15 +1720,19 @@ OMNIPRESENT_PATTERNS = {
             "serhöhung",
             "rechtſam",
             "stheater",
+            "verkaufs",
             "bührenſ",
             "derſelb",
             "farbenſ",
+            "geburts",
             "halberſ",
             "röschen",
             "ſattler",
             "ſcanner",
             "tſtrafe",
+            "verlags",
             "auſter",
+            "meeres",
             "rechts",
             "sadler",
             "sproze",
@@ -1751,6 +1777,7 @@ OMNIPRESENT_PATTERNS = {
             "sſattler",
             "sſsphäre",
             "prozeſs",
+            "reſſort",
             "sadreſſ",
             "serſatz",
             "serſätz",
@@ -1985,6 +2012,7 @@ OMNIPRESENT_PATTERNS = {
     },
     "r": {
         1: [
+            "urſprung",
             "abſchor",
             "grauſam",
             "szurück",
@@ -1993,6 +2021,7 @@ OMNIPRESENT_PATTERNS = {
             "grafſ",
             "spark",
             "sprüf",
+            "ſtroh",
             "tropſ",
             "wärts",
             "barſ",
@@ -2004,10 +2033,12 @@ OMNIPRESENT_PATTERNS = {
         ],
         2: [
             "sausdruck",
+            "urſprungs",
             "sſpruchs",
             "buſſard",
             "gloſſar",
             "sſpruch",
+            "ſponſor",
             "ſpruchs",
             "kurſus",
             "aſſyr",
@@ -2019,6 +2050,7 @@ OMNIPRESENT_PATTERNS = {
     },
     "ea": {
         1: [
+            "glückſache",
             "baſeball",
             "kaskade",
             "mauſole",
@@ -2053,18 +2085,22 @@ OMNIPRESENT_PATTERNS = {
     },
     "e": {
         1: [
+            "glückſelig",
+            "glückſtadt",
             "miſzelle",
             "demſelb",
             "dieſelb",
             "floskel",
             "gleichs",
             "schemie",
+            "ſpiegel",
             "logieſ",
             "beckſ",
             "heimſ",
             "iſche",
             "logeſ",
             "sidee",
+            "szeug",
             "ſpiel",
             "weiſe",
             "leiſ",
@@ -2085,6 +2121,7 @@ OMNIPRESENT_PATTERNS = {
             "ſchluſſes",
             "eſsäpfel",
             "ſchoſſes",
+            "sſpiegel",
             "meſſeſ",
             "seſſig",
             "sſelbſ",
@@ -2263,6 +2300,7 @@ OMNIPRESENT_PATTERNS = {
     "a": {
         1: [
             "spädagog",
+            "ausflug",
             "klauſu",
             "vaſall",
             "ausüb",
@@ -2299,7 +2337,10 @@ OMNIPRESENT_PATTERNS = {
             "saufſchluſs",
             "sausſchluſs",
             "sabſchluſs",
+            "sausflugs",
+            "ausflugs",
             "koloſſal",
+            "sausflug",
             "ſchauſa",
             "laſſob",
             "paſſow",
@@ -2367,6 +2408,7 @@ OMNIPRESENT_PATTERNS = {
             "ſtz",
         ],
         2: [
+            "ſuchtſymptom",
             "sumsätz",
             "ſtücksſ",
             "sſtoff",
@@ -2542,7 +2584,6 @@ OMNIPRESENT_PATTERNS = {
             "zſ",
         ],
         2: [
-            "glücksſ",
             "sſäb",
             "sſäc",
             "sſäf",
@@ -2612,6 +2653,7 @@ START_PATTERNS = {
         "ablaſs",
         "abriſs",
         "abtaſt",
+        "abzugs",
         "achſel",
         "ananas",
         "angſtſ",
@@ -2882,7 +2924,6 @@ START_PATTERNS = {
         "geräuſch",
         "gerſtens",
         "gewäſſer",
-        "geburts",
         "gemüſeſ",
         "gerſten",
         "gletſch",
@@ -3485,7 +3526,7 @@ START_PATTERNS = {
         "zweiſ",
         "zündſ",
         "zerſ",
-        "zugſ",
+        # "zugſ",
         "ziſ",
         "zuſ",
     ],
