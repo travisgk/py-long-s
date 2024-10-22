@@ -111,7 +111,7 @@ def convert_german_word(word: str):
     clean_word = strip_consonant_accents(word.lower())
 
     # matches list are indexed by the starting letter.
-    exact_matches_list = EXACT_MATCHES.get(clean_word[0])
+    exact_matches_list = get_exact_matches().get(clean_word[0])
     if exact_matches_list is not None:
         for term in exact_matches_list:
             no_long_s = term.replace("ſ", "s")
@@ -122,7 +122,7 @@ def convert_german_word(word: str):
                 return word
 
     # checks to see if this word is actually a name or a name + "s".
-    NAMES_LIST = LONG_S_NAMES.get(clean_word[0])
+    NAMES_LIST = get_long_s_names().get(clean_word[0])
     if NAMES_LIST is not None:
         if (
             clean_word[-1] == "s" and clean_word[:-1] in NAMES_LIST
@@ -137,8 +137,14 @@ def convert_german_word(word: str):
     blueprint_word = clean_word
     clean_word = clean_word[:-1].replace("s", UNKNOWN_S) + clean_word[-1]
 
-    # enforces a few exceptional spellings.
-    for term in FORCED_OVERWRITES:
+    """
+    Step 2) 
+    ---
+    This step enforces a few exceptional spellings.
+    
+    """
+    forced_overwrites = get_forced_overwrites()
+    for term in forced_overwrites:
         if len(term) <= len(clean_word):
             clean_word, made_replacement = _blueprint_replace(
                 clean_word, blueprint_word, term
@@ -161,12 +167,12 @@ def convert_german_word(word: str):
     clean_word = _fill_in_double_s(clean_word)
     remaining_blank_indices = _find_blank_indices(clean_word)
     if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
-        # the word has been fully solved, so it's returned.
+        # the word has been fully solved, so it's returned. (UNCERTAIN)
         word = transfer_long_S(clean_word, word)
         return word
 
     """
-    Step 2) 
+    Step 2b) 
     ---
     This step applies basic patterns to try to solve any ambiguous S.
     
@@ -206,15 +212,17 @@ def convert_german_word(word: str):
 
     # gets the list of endings to use.
     ends_list = None
+    end_patterns = get_end_patterns()
+
     if len(blueprint_word) >= 3:
         index = blueprint_word[-3:]
-        ends_list = END_PATTERNS.get(index)
+        ends_list = end_patterns.get(index)
     if ends_list is None and len(blueprint_word) >= 2:
         index = blueprint_word[-2:]
-        ends_list = END_PATTERNS.get(index)
+        ends_list = end_patterns.get(index)
     if ends_list is None and len(blueprint_word) >= 1:
         index = blueprint_word[-1]
-        ends_list = END_PATTERNS.get(index)
+        ends_list = end_patterns.get(index)
 
     if ends_list is not None:
         for term in ends_list:
@@ -248,39 +256,27 @@ def convert_german_word(word: str):
 
     # builds a list of replacement patterns
     # based on what letters the word is composed of.
-    isolated_keys = [
-        "ir",
-        "nt",
-        "er",
-        "et",
-        "en",
-        "at",
-        "r",
-        "ea",
-        "e",
-        "n",
-        "i",
-        "a",
-        "t",
-        "h",
-        "u",
-        "o",
-    ]
     word_keys = ["remaining"]
-    for key in isolated_keys:
+    for key in CONTAINING_KEYS:
         if all(char in clean_word for char in key):
             word_keys.append(key)
 
     s_count = min(2, blueprint_word.count("s"))
-    omnipresent_patterns = []
+    omnipresent_patterns = get_omnipresent_patterns()
+    patterns = []
     for word_key in word_keys:
-        omnipresent_patterns += OMNIPRESENT_PATTERNS[word_key][1]
+        list_one = omnipresent_patterns[word_key].get("1")
+        if list_one is not None:
+            patterns.extend(list_one)
+            # patterns += list_one
+
         if s_count == 2:
-            omnipresent_patterns += OMNIPRESENT_PATTERNS[word_key][2]
+            list_two = omnipresent_patterns[word_key].get("2")
+            if list_two is not None:
+                patterns.extend(list_two)
 
-    omnipresent_patterns = sorted(omnipresent_patterns, key=lambda x: -len(x))
-
-    for term in omnipresent_patterns:
+    patterns = sorted(patterns, key=lambda x: -len(x))
+    for term in patterns:
         if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
             break  # no more unknowns remain.
 
@@ -310,7 +306,7 @@ def convert_german_word(word: str):
     if PRINT_DEBUG_TEXT:
         print(f"Step 5)")
 
-    starts_list = START_PATTERNS.get(blueprint_word[0])
+    starts_list = get_start_patterns().get(blueprint_word[0])
     if starts_list is not None and UNKNOWN_S in (
         clean_word[i] for i in remaining_blank_indices
     ):
@@ -336,7 +332,7 @@ def convert_german_word(word: str):
     This step runs postprocess replacements with the crossword search.
 
     """
-    for term in POSTPROCESS_PATTERNS:
+    for term in get_postprocess_patterns():
         if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
             break  # no more unknowns.
 
