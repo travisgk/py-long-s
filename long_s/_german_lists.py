@@ -2,9 +2,18 @@
 Filename: _german_lists.py
 Description: This file contains functionality 
              to load German spelling patterns from .json files.
+            
+             The best way to modify these lists is to activate developer mode
+             before any conversions are run:
+                long_s.enable_developer_mode()
+
+             Upon loading dictionaries, this will automatically clean up 
+             the .json files under ./german-lists/raw and then generate new
+             .json files under ./german-lists/processed.
+
 
 Author: TravisGK
-Version: 1.0.3
+Version: 1.0.5
 
 
 The final patterns are organized and indexed as such:
@@ -43,14 +52,31 @@ def _get_local_file_dir():
     return os.path.dirname(file_path)
 
 
+_USING_DEV_MODE = False
+
+
+def enable_developer_mode():
+    """
+    Turns the option on to automatically clean up
+    and reprocess the .json files full of spelling patterns.
+    """
+    global _USING_DEV_MODE
+    _USING_DEV_MODE = True
+
+
 _CUSTOM_ALPHABET = "0123456789'-aäbcdefghijklmnoöpqrsſßtuüvwxyz"
 _index_map = {char: index for index, char in enumerate(_CUSTOM_ALPHABET)}
 
 
-def _sort_words(words, length_as_primary=True):
+def sort_words(words, length_as_primary=True):
     """
     Returns the given list of words sorted
     by descending length and then alphabetically.
+
+    Parameters:
+    words (list): list of words to be sorted.
+    length_as_primary (bool): if False,
+                              then the list will be sorted alphabetically.
     """
     if length_as_primary:
         return sorted(
@@ -94,9 +120,9 @@ def _load_json_as_alphabet_indexed(json_path: str, sort_lists: bool = True):
             result[index].append(word)
 
     if sort_lists:
-        keys_list = _sort_words(result.keys())
+        keys_list = sort_words(result.keys())
         for key in keys_list:
-            result[key] = _sort_words(result[key])
+            result[key] = sort_words(result[key])
 
     return result
 
@@ -124,7 +150,7 @@ def _load_json_as_indexed_by_end(keys, json_path: str, sort_lists: bool = True):
                 remaining_list.append(word)
         loaded_list = remaining_list
         if sort_lists:
-            result[key] = _sort_words(result[key])
+            result[key] = sort_words(result[key])
 
     return result
 
@@ -182,7 +208,7 @@ def _load_json_as_indexed_by_contained(
     if sort_lists:
         for key in keys + ["remaining"]:
             for i in range(1, max_s_count + 1):
-                result[key][i] = _sort_words(result[key][i])
+                result[key][i] = sort_words(result[key][i])
 
     return result
 
@@ -212,7 +238,7 @@ def _save_flattened_json(terms, json_path: str):
     flat_list = []
     _get_flattened_terms(terms, flat_list)
     flat_list = list(set(flat_list))
-    flat_list = _sort_words(flat_list, length_as_primary=False)
+    flat_list = sort_words(flat_list, length_as_primary=False)
     with open(json_path, "w", encoding="utf-8") as file:
         json.dump(flat_list, file, indent=4, ensure_ascii=False)
 
@@ -340,8 +366,8 @@ def load_dicts(sort_lists=True):
         return
 
     global _DICTS
-    ENFORCE_PROCESSING = False  # set this to True for dev mode.
-    CLEAN_UP_RAW_FILES = False  # set this to True for dev mode.
+    ENFORCE_PROCESSING = _USING_DEV_MODE
+    CLEAN_UP_RAW_FILES = _USING_DEV_MODE
 
     # .json files whose contents are already a direct 1D list.
     DIRECT_FILE_NAMES = [
@@ -398,7 +424,7 @@ def load_dicts(sort_lists=True):
         out_file_path = os.path.join(processed_path, file_name)
         direct_list = _load_json(in_file_path)
         if sort_lists:
-            direct_list = _sort_words(direct_list)
+            direct_list = sort_words(direct_list)
         _save_json(direct_list, out_file_path)
 
     # processes files to be indexed by their starting letter.

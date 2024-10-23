@@ -11,7 +11,7 @@ License: MIT License
 
 import itertools
 import re
-from ._simple_conversions import strip_consonant_accents, transfer_long_S
+from ._simple_conversions import strip_to_german_alphabet, transfer_long_S
 from ._german_lists import *
 
 UNKNOWN_S = "φ"
@@ -108,7 +108,7 @@ def convert_german_word(word: str):
         print(f"Begins) {word}")
         print(f"Step 1)")
 
-    clean_word = strip_consonant_accents(word.lower())
+    clean_word = strip_to_german_alphabet(word.lower())
 
     # matches list are indexed by the starting letter.
     exact_matches_list = get_exact_matches().get(clean_word[0])

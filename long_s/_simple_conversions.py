@@ -35,6 +35,28 @@ def strip_consonant_accents(word: str):
     return result
 
 
+def strip_to_german_alphabet(word: str):
+    """
+    Returns text with any accent marks removed (besides umlauts).
+    If there's an issue due to a foreign character
+    (i.e. one character becomes two),
+    then the word is just returned.
+    """
+    result = ""
+    no_accents = strip_accents(word)
+    if len(word) != len(no_accents):
+        return word
+
+    for i, n_char in enumerate(no_accents):
+        # print(f"{word}\t{no_accents}\t{i} len word: {len(word)}")
+        if word[i] in "AÄEIOÖUÜYaäeioöuüy":
+            result += word[i]
+        else:
+            result += n_char
+
+    return result
+
+
 def apply_long_S_pattern(word: str, pattern: str):
     """
     Returns the result of using the given re pattern

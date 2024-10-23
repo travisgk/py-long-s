@@ -121,6 +121,7 @@
     ],
     "h": [
         "hauptſtadt",
+        "heapſort",
         "hauſe"
     ],
     "i": [
@@ -187,6 +188,9 @@
         "perſonen",
         "pilſner",
         "perſon"
+    ],
+    "q": [
+        "quickſort"
     ],
     "r": [
         "ringsum"

@@ -16,7 +16,7 @@ from functools import partial
 from ._split_words import *
 from ._simple_conversions import *
 from ._german_conversion import convert_german_word
-from ._german_lists import load_dicts
+from ._german_lists import enable_developer_mode, sort_words, load_dicts
 
 
 def get_conversion_func(lang: str):
@@ -26,6 +26,7 @@ def get_conversion_func(lang: str):
     elif lang == "fr":
         return convert_french_word
     elif lang == "de":
+        load_dicts()
         return convert_german_word
     elif lang == "es":
         return convert_spanish_word
@@ -92,8 +93,6 @@ def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
     if convert_func is None:
         print(f'language "{lang}" not found.' "the options are: en, fr, de, es, it.")
         return text
-    elif lang == "de":
-        load_dicts()
 
     words_with_indices = split_words_with_indices(text, lang)
 
