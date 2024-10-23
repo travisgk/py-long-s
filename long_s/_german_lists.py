@@ -356,7 +356,13 @@ CONTAINING_KEYS = [
     "o",
 ]
 
+_processed_file_paths = []
 _loaded = False
+
+
+def get_processed_file_paths():
+    load_dicts()
+    return _processed_file_paths
 
 
 def load_dicts(sort_lists=True):
@@ -365,6 +371,7 @@ def load_dicts(sort_lists=True):
     if _loaded:
         return
 
+    global _processed_file_paths
     global _DICTS
     ENFORCE_PROCESSING = _USING_DEV_MODE
     CLEAN_UP_RAW_FILES = _USING_DEV_MODE
@@ -396,7 +403,7 @@ def load_dicts(sort_lists=True):
     # determines if the lists need to be processed and saved.
     must_process = True
     processed_path = os.path.join(local_dir, "german-lists", "processed")
-    processed_file_paths = [
+    _processed_file_paths = [
         os.path.join(processed_path, ALPHABETIC_FILE_NAMES[0]),
         os.path.join(processed_path, ALPHABETIC_FILE_NAMES[1]),
         os.path.join(processed_path, DIRECT_FILE_NAMES[0]),
@@ -408,13 +415,13 @@ def load_dicts(sort_lists=True):
     if not os.path.isdir(processed_path):
         os.path.mkdir(processed_path)
     elif not ENFORCE_PROCESSING and all(
-        os.path.isfile(f) for f in processed_file_paths
+        os.path.isfile(f) for f in _processed_file_paths
     ):
         must_process = False
 
     # loads the dictionaries from the already-existing processed files.
     if not must_process:
-        for i, file_path in enumerate(processed_file_paths):
+        for i, file_path in enumerate(_processed_file_paths):
             _DICTS[i] = _load_json(file_path)
         return
 
@@ -447,7 +454,7 @@ def load_dicts(sort_lists=True):
     _save_json(dict_obj, out_file_path)
 
     # loads the processed files so py-long-s can run.
-    for i, file_path in enumerate(processed_file_paths):
+    for i, file_path in enumerate(_processed_file_paths):
         _DICTS[i] = _load_json(file_path)
 
     # sorts and overwrites the raw files.
