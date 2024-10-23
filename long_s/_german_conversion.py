@@ -180,10 +180,12 @@ def convert_german_word(word: str):
 
     # It begins by determining which occurrences of S can't be explicitly decided as
     # being a short S (and thereby which ones must definitely be a short S).
+    # there's no long S before B, D, F, G, J, K, L, M, N, Q, R, V, W, X.
     if FORCE_SHORT_S_BEFORE_Z:
         pattern = f"{UNKNOWN_S}(?=[aäceioöpſ{UNKNOWN_S}tuüy])"
     else:
         pattern = f"{UNKNOWN_S}(?=[aäceioöpſ{UNKNOWN_S}tuüyz])"
+
     uncertain_indices = [m.start() for m in re.finditer(pattern, clean_word)]
 
     # fills in any determined short S from the pattern.
@@ -267,13 +269,12 @@ def convert_german_word(word: str):
     for word_key in word_keys:
         list_one = omnipresent_patterns[word_key].get("1")
         if list_one is not None:
-            patterns.extend(list_one)
-            # patterns += list_one
+            patterns += list_one
 
         if s_count == 2:
             list_two = omnipresent_patterns[word_key].get("2")
             if list_two is not None:
-                patterns.extend(list_two)
+                patterns += list_two
 
     patterns = sorted(patterns, key=lambda x: -len(x))
     for term in patterns:

@@ -211,6 +211,7 @@ def _save_flattened_json(terms, json_path: str):
     """
     flat_list = []
     _get_flattened_terms(terms, flat_list)
+    flat_list = list(set(flat_list))
     flat_list = _sort_words(flat_list, length_as_primary=False)
     with open(json_path, "w", encoding="utf-8") as file:
         json.dump(flat_list, file, indent=4, ensure_ascii=False)
@@ -339,8 +340,8 @@ def load_dicts(sort_lists=True):
         return
 
     global _DICTS
-    ENFORCE_PROCESSING = False # set this to True for dev mode.
-    CLEAN_UP_RAW_FILES = False # set this to True for dev mode.
+    ENFORCE_PROCESSING = True  # set this to True for dev mode.
+    CLEAN_UP_RAW_FILES = True  # set this to True for dev mode.
 
     # .json files whose contents are already a direct 1D list.
     DIRECT_FILE_NAMES = [
