@@ -1,5 +1,5 @@
 # py-long-s
-This is a Python tool that converts text to **accurately** use the archaic long S letter ( ſ ) in its spellings.
+This Python tool accurately inserts the historical long S character (&nbsp;ſ&nbsp;) back into the given text to make it appear as if it were written before the 20th century.
 
 English, French, German, Spanish, and Italian are supported.
 
