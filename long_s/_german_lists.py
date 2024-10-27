@@ -52,6 +52,10 @@ def _get_local_file_dir():
     return os.path.dirname(file_path)
 
 
+def using_developer_mode():
+    return _USING_DEV_MODE
+
+
 _USING_DEV_MODE = False
 
 
@@ -230,7 +234,7 @@ def _get_flattened_terms(terms, results_list):
             results_list.extend(_get_flattened_terms(term, results_list))
 
 
-def _save_flattened_json(terms, json_path: str):
+def save_flattened_json(terms, json_path: str):
     """
     Saves a multidimensional list/dictionary as a 1D list to a .json file.
     This keeps the lists easy to edit for future patches.
@@ -469,6 +473,6 @@ def load_dicts(sort_lists=True):
             os.path.join(raw_path, DIRECT_FILE_NAMES[1]),
         ]
         for i, out_file_path in enumerate(raw_file_paths):
-            _save_flattened_json(_DICTS[i], out_file_path)
+            save_flattened_json(_DICTS[i], out_file_path)
 
     _loaded = True

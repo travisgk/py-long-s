@@ -15,8 +15,13 @@ import re
 from functools import partial
 from ._split_words import *
 from ._simple_conversions import *
-from ._german_conversion import convert_german_word
-from ._german_lists import enable_developer_mode, sort_words, load_dicts
+from ._german_conversion import enable_debug_text, convert_german_word
+from ._german_lists import (
+    using_developer_mode,
+    enable_developer_mode,
+    sort_words,
+    load_dicts,
+)
 
 
 def get_conversion_func(lang: str):

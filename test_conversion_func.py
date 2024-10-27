@@ -4,14 +4,14 @@ Description: This file contains a function to verify that
              the conversion functions for each language are working properly.
 
 Author: TravisGK
-Version: 1.0
+Version: 1.01
 
 License: MIT License
 """
 
+import json
+import os
 import long_s
-
-from test_spellings import TEST_SPELLINGS
 
 _LANG_NAMES = {
     "en": "English",
@@ -20,6 +20,11 @@ _LANG_NAMES = {
     "es": "Spanish",
     "it": "Italian",
 }
+
+
+def _get_local_file_dir():
+    file_path = os.path.abspath(__file__)
+    return os.path.dirname(file_path)
 
 
 def test_conversion_func(lang: str = None):
@@ -38,7 +43,23 @@ def test_conversion_func(lang: str = None):
         return
 
     # tests each case in the list of spellings.
-    spellings = TEST_SPELLINGS[lang]
+    if lang == "de":
+        name = "test-spellings-de.json"
+        path = os.path.join(_get_local_file_dir(), name)
+        with open(path, "r", encoding="utf-8") as file:
+            spellings = json.load(file)
+
+        if long_s.using_developer_mode():
+            long_s._german_lists.save_flattened_json(spellings, path)
+            with open(path, "r", encoding="utf-8") as file:
+                spellings = json.load(file)
+    else:
+        name = "test-spellings.json"
+        path = os.path.join(_get_local_file_dir(), name)
+        with open(path, "r", encoding="utf-8") as file:
+            contents = json.load(file)
+        spellings = contents[lang]
+
     conversion_func = long_s.get_conversion_func(lang)
     mismatches = []
     for expected_output in spellings:

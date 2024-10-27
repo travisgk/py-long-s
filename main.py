@@ -2,6 +2,7 @@ import time
 import long_s
 from test_conversion_func import *
 
+
 def main():
     # prints out sample sentences for each language.
     print("\n", end="")

@@ -4,7 +4,7 @@ Description: This contains the complex function that inserts the long S
              into the German language.
 
 Author: TravisGK
-Version: 1.0
+Version: 1.01
 
 License: MIT License
 """
@@ -86,15 +86,20 @@ def _find_blank_indices(word):
     return [i for i, c in enumerate(word) if c == UNKNOWN_S]
 
 
+_PRINT_DEBUG_TEXT = False
+
+
+def enable_debug_text():
+    """Turns on the debug text outputs for the German conversion."""
+    global _PRINT_DEBUG_TEXT
+    _PRINT_DEBUG_TEXT = True
+
+
 def convert_german_word(word: str):
     """Returns German text with the long S (ſ) placed appropriately."""
 
     DEFAULT_UNKNOWNS_TO_LONG_S = True  # True by default.
     FORCE_SHORT_S_BEFORE_Z = False  # False after 1901.
-    PRINT_DEBUG_TEXT = False
-
-    backup_word = word
-
     """
     Step 1)
     ---
@@ -104,7 +109,8 @@ def convert_german_word(word: str):
     the function will return that conversion immediately.
 
     """
-    if PRINT_DEBUG_TEXT:
+    backup_word = word
+    if _PRINT_DEBUG_TEXT:
         print(f"Begins) {word}")
         print(f"Step 1)")
 
@@ -117,11 +123,12 @@ def convert_german_word(word: str):
             no_long_s = term.replace("ſ", "s")
             if clean_word == no_long_s:
                 word = transfer_long_S(term, word)
-                if PRINT_DEBUG_TEXT:
+                if _PRINT_DEBUG_TEXT:
                     print(f"\t{word}")
-                return word
+                return word  # exact match was found
 
     # checks to see if this word is actually a name or a name + "s".
+    # the list of names in this file do not contain any long S ( ſ ).
     NAMES_LIST = get_long_s_names().get(clean_word[0])
     if NAMES_LIST is not None:
         if (
@@ -198,7 +205,7 @@ def convert_german_word(word: str):
         clean_word = clean_word[:index] + "s" + clean_word[index + 1 :]
     clean_word = _fill_in_double_s(clean_word)
 
-    if PRINT_DEBUG_TEXT:
+    if _PRINT_DEBUG_TEXT:
         print(f"Step 2)\t{clean_word}")
 
     """
@@ -209,7 +216,7 @@ def convert_german_word(word: str):
     that occur at the end of words.
 
     """
-    if PRINT_DEBUG_TEXT:
+    if _PRINT_DEBUG_TEXT:
         print(f"Step 3)")
 
     # gets the list of endings to use.
@@ -236,13 +243,13 @@ def convert_german_word(word: str):
                     clean_snippet, blueprint_snippet, term
                 )
                 if made_replacement:
-                    if PRINT_DEBUG_TEXT:
+                    if _PRINT_DEBUG_TEXT:
                         print(f"\tEND PATTERN: {term}")
                     clean_word = clean_word[: -len(term)] + clean_snippet
                     clean_word = _fill_in_double_s(clean_word)
                     break
 
-    if PRINT_DEBUG_TEXT:
+    if _PRINT_DEBUG_TEXT:
         print(f"\t{clean_word}")
 
     """
@@ -253,7 +260,7 @@ def convert_german_word(word: str):
     anywhere in the word are used to try to further solve the spelling.
 
     """
-    if PRINT_DEBUG_TEXT:
+    if _PRINT_DEBUG_TEXT:
         print(f"Step 4)")
 
     # builds a list of replacement patterns
@@ -283,12 +290,12 @@ def convert_german_word(word: str):
 
         clean_word, made_replacement = _crossword_replace(clean_word, term)
         if made_replacement:
-            if PRINT_DEBUG_TEXT:
+            if _PRINT_DEBUG_TEXT:
                 print(f"\tOMNIPRESENT PATTERN: {term}")
             clean_word = _fill_in_double_s(clean_word)
             remaining_blank_indices = _find_blank_indices(clean_word)
 
-    if PRINT_DEBUG_TEXT:
+    if _PRINT_DEBUG_TEXT:
         print(f"\t{clean_word}")
 
     if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
@@ -304,7 +311,7 @@ def convert_german_word(word: str):
     that occur at the beginning of words.
 
     """
-    if PRINT_DEBUG_TEXT:
+    if _PRINT_DEBUG_TEXT:
         print(f"Step 5)")
 
     starts_list = get_start_patterns().get(blueprint_word[0])
@@ -318,13 +325,13 @@ def convert_german_word(word: str):
                     clean_snippet, term
                 )
                 if made_replacement:
-                    if PRINT_DEBUG_TEXT:
+                    if _PRINT_DEBUG_TEXT:
                         print(f"\tSTART PATTERN: {term}")
                     clean_word = clean_snippet + clean_word[len(term) :]
                     clean_word = _fill_in_double_s(clean_word)
                     break
 
-    if PRINT_DEBUG_TEXT:
+    if _PRINT_DEBUG_TEXT:
         print(f"\t{clean_word}")
 
     """
@@ -341,7 +348,7 @@ def convert_german_word(word: str):
         if made_replacement:
             clean_word = _fill_in_double_s(clean_word)
 
-    if PRINT_DEBUG_TEXT:
+    if _PRINT_DEBUG_TEXT:
         print(f"Step 6) {clean_word}")
 
     """
@@ -354,7 +361,7 @@ def convert_german_word(word: str):
         clean_word = clean_word.replace(UNKNOWN_S, "ſ")
     word = transfer_long_S(clean_word, word)
 
-    if PRINT_DEBUG_TEXT:
+    if _PRINT_DEBUG_TEXT:
         print(f"Result) {word}")
 
     return word
