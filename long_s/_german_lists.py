@@ -94,6 +94,7 @@ def _load_json(json_path: str):
     """Loads a list/dictionary object from the given file path."""
     with open(json_path, "r", encoding="utf-8") as file:
         result = json.load(file)
+
     return result
 
 
