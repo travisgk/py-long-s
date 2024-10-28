@@ -4,7 +4,7 @@ Description: This contains the simpler functions that insert the long S
 			 into these languages: English, French, Spanish, and Italian.
 
 Author: TravisGK
-Version: 1.0
+Version: 1.01
 
 License: MIT License
 """
@@ -103,7 +103,7 @@ def transfer_long_S(processed_word: str, original_word: str):
     return original_word
 
 
-def convert_english_word(word: str):
+def convert_english_word(word: str, dicts=None):
     """Returns English text with the long S (ſ) placed appropriately."""
     no_accents = strip_accents(word.lower())
 
@@ -129,7 +129,7 @@ def convert_english_word(word: str):
     return word
 
 
-def convert_french_word(word: str):
+def convert_french_word(word: str, dicts=None):
     """Returns French text with the long S (ſ) placed appropriately."""
     no_accents = strip_accents(word.lower())
 
@@ -143,7 +143,7 @@ def convert_french_word(word: str):
     return word
 
 
-def convert_spanish_word(word: str):
+def convert_spanish_word(word: str, dicts=None):
     """Returns Spanish text with the long S (ſ) placed appropriately."""
 
     clean_word = strip_consonant_accents(word.lower())
@@ -160,7 +160,7 @@ def convert_spanish_word(word: str):
     return word
 
 
-def convert_italian_word(word: str):
+def convert_italian_word(word: str, dicts=None):
     """Returns Italian text with the long S (ſ) placed appropriately."""
 
     MAINTAIN_DOUBLE_LONG_WITH_SSI = True  # historical variation.
