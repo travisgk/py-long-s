@@ -4,6 +4,8 @@ from test_conversion_func import *
 
 
 def main():
+    long_s.enable_developer_mode()
+
     # prints out sample sentences for each language.
     print("\n", end="")
     sentences = [
