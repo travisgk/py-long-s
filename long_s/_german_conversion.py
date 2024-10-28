@@ -156,7 +156,7 @@ def convert_german_word(word: str):
     clean_word = clean_word[:-1].replace("s", UNKNOWN_S) + clean_word[-1]
 
     """
-    Step 2) 
+    Step 2a) 
     ---
     This step enforces a few exceptional spellings.
     
