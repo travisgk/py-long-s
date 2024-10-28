@@ -113,4 +113,4 @@ const POSTPROCESS_PATTERNS = [
 
 
 if __name__ == "__main__":
-    build_js(version_str="1.0.7a")
+    build_js(version_str="1.0.8")
