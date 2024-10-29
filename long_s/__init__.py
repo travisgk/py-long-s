@@ -21,7 +21,6 @@ from ._german_lists import (
     enable_developer_mode,
     sort_words,
     load_dicts,
-    DICTS,
 )
 
 
@@ -41,11 +40,11 @@ def get_conversion_func(lang: str):
     return None
 
 
-def _process_chunk(chunk, convert_func, lang: str = "de", dicts=None):
+def _process_chunk(chunk, convert_func, lang: str = "de"):
     """
     Returns a dict of every word contained in the given chunk after being converted.
     """
-    return {key: convert_func(value, dicts=dicts) for key, value in chunk.items()}
+    return {key: convert_func(value) for key, value in chunk.items()}
 
 
 def convert_text_file(
@@ -125,11 +124,7 @@ def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
         last_used_index = (len(words_with_indices) // CHUNK_SIZE) * CHUNK_SIZE
 
         # converts every chunk using multiprocessing.
-        manager = multiprocessing.Manager()
-        shared_dicts = manager.list(DICTS) if lang == "de" else None
-        process_func = partial(
-            _process_chunk, convert_func=convert_func, lang=lang, dicts=shared_dicts
-        )
+        process_func = partial(_process_chunk, convert_func=convert_func, lang=lang)
         with multiprocessing.Pool() as pool:
             results = pool.map(process_func, chunks)
 
@@ -147,9 +142,8 @@ def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
         # uses one thread to directly convert some words.
         # converts each word individually.
         words = split_words_with_indices(text, lang)
-        dicts = DICTS if lang == "de" else None
         for old_word, start_index in words:
-            new_word = convert_func(old_word, dicts=dicts)
+            new_word = convert_func(old_word)
 
             if old_word != new_word:
                 text = (

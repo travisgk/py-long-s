@@ -13,7 +13,7 @@ Description: This file contains functionality
 
 
 Author: TravisGK
-Version: 1.0.6
+Version: 1.0.5
 
 
 The final patterns are organized and indexed as such:
@@ -44,13 +44,7 @@ License: MIT License
 
 import json
 import os
-from multiprocessing import Pool
-from functools import partial
 from ._simple_conversions import strip_consonant_accents
-
-
-def _access_single_key(key, data):
-    return data.get(key)
 
 
 def _get_local_file_dir():
@@ -260,7 +254,7 @@ def _save_json(terms, json_path: str):
         json.dump(terms, file, indent=4, ensure_ascii=False)
 
 
-DICTS = [
+_DICTS = [
     {},  # 0 exact-matches
     {},  # 1 long-s-names
     [],  # 2 forced-overwrites
@@ -269,6 +263,34 @@ DICTS = [
     {},  # 5 start-patterns
     [],  # 6 postprocess-patterns
 ]
+
+
+def get_exact_matches():
+    return _DICTS[0]
+
+
+def get_long_s_names():
+    return _DICTS[1]
+
+
+def get_forced_overwrites():
+    return _DICTS[2]
+
+
+def get_end_patterns():
+    return _DICTS[3]
+
+
+def get_omnipresent_patterns():
+    return _DICTS[4]
+
+
+def get_start_patterns():
+    return _DICTS[5]
+
+
+def get_postprocess_patterns():
+    return _DICTS[6]
 
 
 END_KEYS = [
@@ -355,7 +377,7 @@ def load_dicts(sort_lists=True):
         return
 
     global _processed_file_paths
-    global DICTS
+    global _DICTS
     ENFORCE_PROCESSING = _USING_DEV_MODE
     CLEAN_UP_RAW_FILES = _USING_DEV_MODE
 
@@ -405,7 +427,7 @@ def load_dicts(sort_lists=True):
     # loads the dictionaries from the already-existing processed files.
     if not must_process:
         for i, file_path in enumerate(_processed_file_paths):
-            DICTS[i] = _load_json(file_path)
+            _DICTS[i] = _load_json(file_path)
         return
 
     # processes files that are already 1D lists.
@@ -438,7 +460,7 @@ def load_dicts(sort_lists=True):
 
     # loads the processed files so py-long-s can run.
     for i, file_path in enumerate(_processed_file_paths):
-        DICTS[i] = _load_json(file_path)
+        _DICTS[i] = _load_json(file_path)
 
     # sorts and overwrites the raw files.
     if CLEAN_UP_RAW_FILES:
@@ -452,6 +474,6 @@ def load_dicts(sort_lists=True):
             os.path.join(raw_path, DIRECT_FILE_NAMES[1]),
         ]
         for i, out_file_path in enumerate(raw_file_paths):
-            save_flattened_json(DICTS[i], out_file_path)
+            save_flattened_json(_DICTS[i], out_file_path)
 
     _loaded = True

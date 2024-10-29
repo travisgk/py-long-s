@@ -4,7 +4,7 @@ Description: This contains the complex function that inserts the long S
              into the German language.
 
 Author: TravisGK
-Version: 1.03
+Version: 1.02
 
 License: MIT License
 """
@@ -106,7 +106,7 @@ def _apply_test_exception(text: str, originally_capitalized: bool):
     return text.replace("ſteſt", "steſt")
 
 
-def convert_german_word(word: str, dicts=None):
+def convert_german_word(word: str):
     """Returns German text with the long S (ſ) placed appropriately."""
 
     DEFAULT_UNKNOWNS_TO_LONG_S = True  # True by default.
@@ -128,7 +128,7 @@ def convert_german_word(word: str, dicts=None):
     clean_word = strip_to_german_alphabet(word.lower())
 
     # matches list are indexed by the starting letter.
-    exact_matches_list = dicts[0].get(clean_word[0])
+    exact_matches_list = get_exact_matches().get(clean_word[0])
     if exact_matches_list is not None:
         for term in exact_matches_list:
             no_long_s = term.replace("ſ", "s")
@@ -140,7 +140,7 @@ def convert_german_word(word: str, dicts=None):
 
     # checks to see if this word is actually a name or a name + "s".
     # the list of names in this file do not contain any long S ( ſ ).
-    NAMES_LIST = dicts[1].get(clean_word[0])
+    NAMES_LIST = get_long_s_names().get(clean_word[0])
     if NAMES_LIST is not None:
         if (
             clean_word[-1] == "s" and clean_word[:-1] in NAMES_LIST
@@ -161,7 +161,7 @@ def convert_german_word(word: str, dicts=None):
     This step enforces a few exceptional spellings.
     
     """
-    forced_overwrites = dicts[2]
+    forced_overwrites = get_forced_overwrites()
     for term in forced_overwrites:
         if len(term) <= len(clean_word):
             clean_word, made_replacement = _blueprint_replace(
@@ -233,7 +233,7 @@ def convert_german_word(word: str, dicts=None):
 
     # gets the list of endings to use.
     ends_list = None
-    end_patterns = dicts[3]
+    end_patterns = get_end_patterns()
 
     if len(blueprint_word) >= 3:
         index = blueprint_word[-3:]
@@ -283,7 +283,7 @@ def convert_german_word(word: str, dicts=None):
             word_keys.append(key)
 
     s_count = min(2, blueprint_word.count("s"))
-    omnipresent_patterns = dicts[4]
+    omnipresent_patterns = get_omnipresent_patterns()
     patterns = []
     for word_key in word_keys:
         list_one = omnipresent_patterns[word_key].get("1")
@@ -327,7 +327,7 @@ def convert_german_word(word: str, dicts=None):
     if _PRINT_DEBUG_TEXT:
         print(f"Step 5)")
 
-    starts_list = dicts[5].get(blueprint_word[0])
+    starts_list = get_start_patterns().get(blueprint_word[0])
     if starts_list is not None and UNKNOWN_S in (
         clean_word[i] for i in remaining_blank_indices
     ):
@@ -353,7 +353,7 @@ def convert_german_word(word: str, dicts=None):
     This step runs postprocess replacements with the crossword search.
 
     """
-    for term in dicts[6]:
+    for term in get_postprocess_patterns():
         if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
             break  # no more unknowns.
 
