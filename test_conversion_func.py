@@ -4,7 +4,7 @@ Description: This file contains a function to verify that
              the conversion functions for each language are working properly.
 
 Author: TravisGK
-Version: 1.01
+Version: 1.02
 
 License: MIT License
 """
@@ -60,14 +60,23 @@ def test_conversion_func(lang: str = None):
             contents = json.load(file)
         spellings = contents[lang]
 
-    conversion_func = long_s.get_conversion_func(lang)
+    # loads the test spellings into a single string split by spaces.
+    # this allows for multiprocessing with the conversion.
+    expected_str = "\n".join(spellings)
+    test_str = expected_str.replace("ſ", "s")
+    actual_str = long_s.convert(test_str, lang=lang)
+
+    # splits the strings into lists of results.
+    expected_list = expected_str.split("\n")
+    test_list = test_str.split("\n")
+    actual_list = actual_str.split("\n")
+
+    # finds any mismatches.
     mismatches = []
-    for expected_output in spellings:
-        input_text = expected_output.replace("ſ", "s")
-        actual_output = conversion_func(input_text)
-        if expected_output != actual_output:
+    for expected, test, actual in zip(expected_list, test_list, actual_list):
+        if expected != actual:
             # outputs to the user any mismatch.
-            mismatches.append((input_text, actual_output, expected_output))
+            mismatches.append((test, actual, expected))
 
     # prints the results to the user.
     num_tests = len(spellings)

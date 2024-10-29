@@ -13,7 +13,7 @@ Description: This file contains functionality
 
 
 Author: TravisGK
-Version: 1.0.5
+Version: 1.0.6
 
 
 The final patterns are organized and indexed as such:
@@ -265,32 +265,9 @@ _DICTS = [
 ]
 
 
-def get_exact_matches():
-    return _DICTS[0]
-
-
-def get_long_s_names():
-    return _DICTS[1]
-
-
-def get_forced_overwrites():
-    return _DICTS[2]
-
-
-def get_end_patterns():
-    return _DICTS[3]
-
-
-def get_omnipresent_patterns():
-    return _DICTS[4]
-
-
-def get_start_patterns():
-    return _DICTS[5]
-
-
-def get_postprocess_patterns():
-    return _DICTS[6]
+def get_german_dicts():
+    load_dicts()
+    return _DICTS
 
 
 END_KEYS = [

@@ -17,6 +17,7 @@ from ._split_words import *
 from ._simple_conversions import *
 from ._german_conversion import enable_debug_text, convert_german_word
 from ._german_lists import (
+    get_german_dicts,
     using_developer_mode,
     enable_developer_mode,
     sort_words,
@@ -40,7 +41,15 @@ def get_conversion_func(lang: str):
     return None
 
 
-def _process_chunk(chunk, convert_func, lang: str = "de"):
+def _process_german_chunk(chunk, convert_func, dicts):
+    """
+    Returns a dict of every word contained in
+    the given German chunk after being converted.
+    """
+    return {key: convert_func(value, dicts=dicts) for key, value in chunk.items()}
+
+
+def _process_chunk(chunk, convert_func):
     """
     Returns a dict of every word contained in the given chunk after being converted.
     """
@@ -124,7 +133,14 @@ def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
         last_used_index = (len(words_with_indices) // CHUNK_SIZE) * CHUNK_SIZE
 
         # converts every chunk using multiprocessing.
-        process_func = partial(_process_chunk, convert_func=convert_func, lang=lang)
+        if lang == "de":
+            dicts = get_german_dicts()
+            process_func = partial(
+                _process_german_chunk, convert_func=convert_func, dicts=dicts
+            )
+        else:
+            process_func = partial(_process_chunk, convert_func=convert_func)
+
         with multiprocessing.Pool() as pool:
             results = pool.map(process_func, chunks)
 
@@ -142,12 +158,26 @@ def convert(text: str, lang: str = "en", keep_unknown_s: bool = False):
         # uses one thread to directly convert some words.
         # converts each word individually.
         words = split_words_with_indices(text, lang)
-        for old_word, start_index in words:
-            new_word = convert_func(old_word)
+        if lang == "de":
+            dicts = get_german_dicts()
+            for old_word, start_index in words:
+                new_word = convert_func(old_word, dicts)
 
-            if old_word != new_word:
-                text = (
-                    text[:start_index] + new_word + text[start_index + len(new_word) :]
-                )
+                if old_word != new_word:
+                    text = (
+                        text[:start_index]
+                        + new_word
+                        + text[start_index + len(new_word) :]
+                    )
+        else:
+            for old_word, start_index in words:
+                new_word = convert_func(old_word)
+
+                if old_word != new_word:
+                    text = (
+                        text[:start_index]
+                        + new_word
+                        + text[start_index + len(new_word) :]
+                    )
 
         return text
