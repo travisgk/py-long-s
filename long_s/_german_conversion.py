@@ -4,7 +4,7 @@ Description: This contains the complex function that inserts the long S
              into the German language.
 
 Author: TravisGK
-Version: 1.03
+Version: 1.03a
 
 License: MIT License
 """
@@ -95,17 +95,6 @@ def enable_debug_text():
     _PRINT_DEBUG_TEXT = True
 
 
-def _apply_test_exception(text: str, originally_capitalized: bool):
-    """
-    Returns the given word with a particular pattern applied.
-    If the given word was originally capitalized, then it's a noun
-    and the pattern "ſteſt" will become "steſt".
-    """
-    if not originally_capitalized:
-        return text
-    return text.replace("ſteſt", "steſt")
-
-
 def convert_german_word(word: str, dicts: list):
     """Returns German text with the long S (ſ) placed appropriately."""
 
@@ -186,7 +175,6 @@ def convert_german_word(word: str, dicts: list):
     remaining_blank_indices = _find_blank_indices(clean_word)
     if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
         # the word has been fully solved, so it's returned. (UNCERTAIN)
-        clean_word = _apply_test_exception(clean_word, backup_word[0].isupper())
         word = transfer_long_S(clean_word, word)
         return word
 
@@ -312,7 +300,6 @@ def convert_german_word(word: str, dicts: list):
 
     if UNKNOWN_S not in (clean_word[i] for i in remaining_blank_indices):
         # the word has been fully solved, so it's returned.
-        clean_word = _apply_test_exception(clean_word, backup_word[0].isupper())
         word = transfer_long_S(clean_word, word)
         return word
 
@@ -372,7 +359,6 @@ def convert_german_word(word: str, dicts: list):
     """
     if DEFAULT_UNKNOWNS_TO_LONG_S:
         clean_word = clean_word.replace(UNKNOWN_S, "ſ")
-    clean_word = _apply_test_exception(clean_word, backup_word[0].isupper())
     word = transfer_long_S(clean_word, word)
 
     if _PRINT_DEBUG_TEXT:
