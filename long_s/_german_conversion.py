@@ -4,7 +4,7 @@ Description: This contains the complex function that inserts the long S
              into the German language.
 
 Author: TravisGK
-Version: 1.03a
+Version: 1.0.3a
 
 License: MIT License
 """

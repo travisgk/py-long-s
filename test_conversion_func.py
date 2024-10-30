@@ -4,7 +4,7 @@ Description: This file contains a function to verify that
              the conversion functions for each language are working properly.
 
 Author: TravisGK
-Version: 1.02
+Version: 1.0.2
 
 License: MIT License
 """
