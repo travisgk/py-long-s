@@ -4,9 +4,12 @@ This Python tool accurately inserts the historical long S character (&nbsp;ſ&nb
 English, French, German, Spanish, and Italian are supported.
 
 #### Requirements:
+`pip install unidecode` is the only required library for conversion, but if you want to convert .odf and .docx file types as well, install:
 ```
-pip install unidecode
+pip install unidecode odfpy python-docx
 ```
+
+<br>
 
 ## Online Converter
 There's also a [JavaScript version](https://github.com/travisgk/long-s-converter) available that can be used online.
@@ -34,11 +37,26 @@ La diſcuſſione è ſtata ſorprendentemente perſpicace.
 
 <br>
 
-## Converting a Text File
+## Converting Files
+### .txt files
 ```
 long_s.convert_text_file(src_path="story.txt", dst_path=None, lang="en"))
 ```
 Since `dst_path` is None, the program will save the converted text file as `story-long-s.txt`.
+
+<br>
+
+### .odf files
+```
+long_s.convert_odf_file(src_path="story.odt", dst_path="old-story.odt", lang="en"))
+```
+
+<br>
+
+### .docx files
+```
+long_s.convert_docx_file(src_path="märschen.docx", lang="de"))
+```
 
 <br>
 
