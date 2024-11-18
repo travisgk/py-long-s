@@ -4,11 +4,9 @@ Description: long-s is a tool that takes modern text and
              inserts the archaic letter of the long S (ſ) where it fits.
 
 Author: TravisGK
-Version: 1.0.1
+Version: 1.0.2
 
 License: MIT License
-
-pip install unidecode python-docx odfpy
 """
 
 
