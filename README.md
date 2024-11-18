@@ -3,10 +3,15 @@ This Python tool accurately inserts the historical long S character (&nbsp;ſ&nb
 
 English, French, German, Spanish, and Italian are supported.
 
-#### Requirements:
-`pip install unidecode` is the only required library for conversion, but if you want to convert .odf and .docx file types as well, install:
+#### Installation
 ```
-pip install unidecode odfpy python-docx
+pip install long-s
+```
+<br>
+
+The libraries used in this project can be installed separately if you wish using:
+```
+pip install numpy python-docx odfpy unidecode
 ```
 
 <br>
