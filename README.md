@@ -9,7 +9,7 @@ pip install long-s
 ```
 <br>
 
-The libraries used in this project can be installed separately if you wish using:
+The libraries used in this project can be installed separately by using:
 ```
 pip install numpy python-docx odfpy unidecode
 ```
