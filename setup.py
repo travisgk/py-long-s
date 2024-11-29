@@ -1,8 +1,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="long-s",
-    version="1.0.32", 
+    name="long_s",
+    version="1.0.33", 
     description="This Python tool accurately inserts the historical long S character ( ſ ) back into the given text to make it appear as if it were written before the 20th century. English, French, German, Spanish and Italian are supported.",
     long_description=open("README.md").read(),
     long_description_content_type="text/markdown",
